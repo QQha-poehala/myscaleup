@@ -1,7 +1,7 @@
 <script setup>
 useSeoMeta({
   title: 'ScaleUp — Внедрение CRM и разработка приложений',
-  description: 'Команда экспертов по автоматизации бизнеса. Внедряем Битрикс24 и amoCRM, разрабатываем тиражные решения.',
+  description: 'Команда экспертов по автоматизации бизнеса. Внедряем Битрикс24 и amoCRM, разрабатываем тиражные и локальные решения.',
 })
 </script>
 
@@ -9,25 +9,24 @@ useSeoMeta({
   <div class="font-sans antialiased text-gray-900 bg-white selection:bg-red-100 selection:text-red-900">
     <TheHeader />
 
-    <!-- HERO SECTION (Первый экран) -->
-    <section class="pt-32 pb-20 md:pt-40 md:pb-28 px-6 bg-gradient-to-b from-gray-50 to-white">
-      <div class="container mx-auto text-center max-w-4xl">
-        <div class="inline-block px-3 py-1 mb-6 text-sm font-semibold text-red-600 bg-red-50 rounded-full border border-red-100">
-          🚀 Автоматизация продаж и процессов
-        </div>
+    <!-- HERO SECTION -->
+    <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 overflow-hidden">
+      <div 
+        class="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
+        style="background-image: url('/mainpage.jpg');"
+      ></div>
+      <div class="absolute inset-0 bg-white/80 z-0"></div>
+
+      <!-- Контент -->
+      <div class="container mx-auto text-center max-w-4xl relative z-10">
         <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
           Масштабируй свой бизнес <br> через <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800">технологии</span>
         </h1>
-        <p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-          Внедряем Битрикс24 и amoCRM, разрабатываем сложные интеграции и создаем приложения, которые экономят ваши деньги и время.
+        <p class="text-xl text-gray-700 mb-10 max-w-2xl mx-auto leading-relaxed">
+          Внедряем CRM в Ваш бизнес, разрабатываем сложные интеграции и создаем приложения, которые экономят ваши деньги и время.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#contact" class="px-8 py-4 bg-red-600 text-white rounded-xl font-bold text-lg hover:bg-red-700 transition-all shadow-xl shadow-red-600/20">
-            Получить консультацию
-          </a>
-          <a href="#experience" class="px-8 py-4 bg-white text-gray-800 border border-gray-200 rounded-xl font-bold text-lg hover:bg-gray-50 transition-all">
-            Наши кейсы
-          </a>
+          <AppButton to="#contact" class="text-lg px-8 py-4 shadow-xl shadow-red-600/20">Получить консультацию</AppButton>
         </div>
       </div>
     </section>
@@ -68,7 +67,7 @@ useSeoMeta({
     </section>
 
     <!-- УСЛУГИ (Блоки) -->
-    <section class="py-20 bg-gray-50 px-6" id="services">
+     <section class="py-20 bg-gray-50 px-6" id="services">
       <div class="container mx-auto">
         <div class="text-center mb-16">
           <h2 class="text-3xl md:text-4xl font-bold mb-4">Наши компетенции</h2>
@@ -76,84 +75,62 @@ useSeoMeta({
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
-          <!-- Блок Битрикс24 -->
-          <div id="bitrix" class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow border border-gray-100 group">
-            <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-              <span class="text-2xl font-bold">B24</span>
-            </div>
-            <h3 class="text-xl font-bold mb-3">Внедрение Битрикс24</h3>
-            <p class="text-gray-500 mb-4">Настройка воронок, автоматизация роботами, переезд с других систем, обучение сотрудников.</p>
-            <ul class="space-y-2 text-sm text-gray-600 mb-6">
+          
+          <!-- Карточка Битрикс -->
+          <ServiceCard 
+            id="bitrix"
+            title="Внедрение Битрикс24" 
+            description="Настройка воронок, автоматизация роботами, переезд с других систем, обучение сотрудников."
+          >
+            <template #icon>
+              <span class="text-2xl font-bold text-blue-600">B24</span>
+            </template>
+            <template #features>
               <li class="flex items-center">✅ Коробочная версия</li>
               <li class="flex items-center">✅ Облачная версия</li>
               <li class="flex items-center">✅ REST API интеграции</li>
-            </ul>
-          </div>
+            </template>
+          </ServiceCard>
 
-          <!-- Блок amoCRM -->
-          <div id="amocrm" class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow border border-gray-100 group">
-            <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-              <span class="text-2xl font-bold">amo</span>
-            </div>
-            <h3 class="text-xl font-bold mb-3">Настройка amoCRM</h3>
-            <p class="text-gray-500 mb-4">Идеально для отделов продаж. Подключение телефонии, мессенджеров, Salesbot.</p>
-            <ul class="space-y-2 text-sm text-gray-600 mb-6">
+          <!-- Карточка amoCRM -->
+          <ServiceCard 
+            id="amocrm"
+            title="Настройка amoCRM" 
+            description="Идеально для отделов продаж. Подключение телефонии, мессенджеров, Salesbot."
+          >
+            <template #icon>
+              <span class="text-2xl font-bold text-blue-600">amo</span>
+            </template>
+            <template #features>
               <li class="flex items-center">✅ Digital Pipeline</li>
               <li class="flex items-center">✅ Разработка виджетов</li>
               <li class="flex items-center">✅ Аудит отдела продаж</li>
-            </ul>
-          </div>
+            </template>
+          </ServiceCard>
 
-          <!-- Блок Разработка -->
-          <div id="apps" class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow border border-gray-100 group">
-            <div class="w-14 h-14 bg-red-50 text-red-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8">
+          <!-- Карточка Разработка -->
+          <ServiceCard 
+            id="apps"
+            title="Разработка приложений" 
+            description="Создаем локальные и тиражные приложения. Публикуем ваши решения в маркетплейсах CRM."
+          >
+            <template #icon>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 text-red-600">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
               </svg>
-            </div>
-            <h3 class="text-xl font-bold mb-3">Разработка приложений</h3>
-            <p class="text-gray-500 mb-4">Создаем локальные и тиражные приложения. Публикуем ваши решения в маркетплейсах CRM.</p>
-            <ul class="space-y-2 text-sm text-gray-600 mb-6">
+            </template>
+            <template #features>
               <li class="flex items-center">✅ Frontend (Vue/React)</li>
               <li class="flex items-center">✅ Backend (Python/PHP)</li>
               <li class="flex items-center">✅ Публикация в сторы</li>
-            </ul>
-          </div>
+            </template>
+          </ServiceCard>
+
         </div>
       </div>
     </section>
 
-    <!-- ФОРМА (Связь) -->
-    <section id="contact" class="py-20 px-6">
-      <div class="container mx-auto max-w-4xl bg-gray-900 rounded-3xl p-8 md:p-16 text-center text-white relative overflow-hidden">
-        <!-- Декор фона -->
-        <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-red-500 via-gray-900 to-gray-900"></div>
-        
-        <div class="relative z-10">
-          <h2 class="text-3xl md:text-4xl font-bold mb-6">Готовы масштабировать бизнес?</h2>
-          <p class="text-gray-400 mb-10 text-lg">Оставьте заявку, и мы проведем бесплатный аудит вашей текущей CRM-системы.</p>
-          
-          <form class="max-w-md mx-auto space-y-4 text-left">
-            <div>
-              <label class="text-sm font-medium text-gray-400 mb-1 block">Ваше имя</label>
-              <input type="text" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-red-500 transition-colors" placeholder="Иван Иванов">
-            </div>
-            <div>
-              <label class="text-sm font-medium text-gray-400 mb-1 block">Email или Телефон</label>
-              <input type="text" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-red-500 transition-colors" placeholder="+7 (999) ...">
-            </div>
-            <div>
-              <label class="text-sm font-medium text-gray-400 mb-1 block">Задача</label>
-              <textarea rows="3" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-red-500 transition-colors" placeholder="Хочу внедрить CRM..."></textarea>
-            </div>
-            <button type="button" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-4 rounded-lg transition-colors shadow-lg shadow-red-900/50 mt-4">
-              Отправить заявку
-            </button>
-            <p class="text-xs text-gray-500 text-center mt-4">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
-          </form>
-        </div>
-      </div>
-    </section>
+    <ContactForm />
 
     <TheFooter />
   </div>

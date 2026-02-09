@@ -10,17 +10,17 @@
           <h3 class="font-bold mb-4 text-lg">Услуги</h3>
           <ul class="text-gray-400 space-y-2">
             <li>Внедрение Битрикс24</li>
-            <li>Настройка amoCRM</li>
-            <li>Разработка виджетов</li>
+            <li>Внедрение amoCRM</li>
+            <li>Разработка приложений</li>
             <li>Интеграции по API</li>
           </ul>
         </div>
         <div>
           <h3 class="font-bold mb-4 text-lg">Контакты</h3>
           <ul class="text-gray-400 space-y-2">
-            <li>Email: hello@myscaleup.ru</li>
-            <li>Телефон: +7 (999) 000-00-00</li>
-            <li>Москва, Пресненская наб., 12</li>
+            <li>Email: info@scaleup.ru</li>
+            <li>Телефон: +7 (952) 926-38-03</li>
+            <li>Новосибирск</li>
           </ul>
         </div>
       </div>
