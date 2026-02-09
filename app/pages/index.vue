@@ -31,74 +31,9 @@ useSeoMeta({
       </div>
     </section>
 
-  <Aboutus />
-
-    <!-- УСЛУГИ (Блоки) -->
-     <section class="py-20 bg-gray-50 px-6" id="services">
-      <div class="container mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4">Наши компетенции</h2>
-          <p class="text-gray-500">Полный цикл работ с CRM-системами</p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          
-          <!-- Карточка Битрикс -->
-          <ServiceCard 
-            id="bitrix"
-            title="Внедрение Битрикс24" 
-            description="Настройка воронок, автоматизация роботами, переезд с других систем, обучение сотрудников."
-          >
-            <template #icon>
-              <span class="text-2xl font-bold text-blue-600">B24</span>
-            </template>
-            <template #features>
-              <li class="flex items-center">✅ Коробочная версия</li>
-              <li class="flex items-center">✅ Облачная версия</li>
-              <li class="flex items-center">✅ REST API интеграции</li>
-            </template>
-          </ServiceCard>
-
-          <!-- Карточка amoCRM -->
-          <ServiceCard 
-            id="amocrm"
-            title="Настройка amoCRM" 
-            description="Идеально для отделов продаж. Подключение телефонии, мессенджеров, Salesbot."
-          >
-            <template #icon>
-              <span class="text-2xl font-bold text-blue-600">amo</span>
-            </template>
-            <template #features>
-              <li class="flex items-center">✅ Digital Pipeline</li>
-              <li class="flex items-center">✅ Разработка виджетов</li>
-              <li class="flex items-center">✅ Аудит отдела продаж</li>
-            </template>
-          </ServiceCard>
-
-          <!-- Карточка Разработка -->
-          <ServiceCard 
-            id="apps"
-            title="Разработка приложений" 
-            description="Создаем локальные и тиражные приложения. Публикуем ваши решения в маркетплейсах CRM."
-          >
-            <template #icon>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 text-red-600">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
-              </svg>
-            </template>
-            <template #features>
-              <li class="flex items-center">✅ Frontend (Vue/React)</li>
-              <li class="flex items-center">✅ Backend (Python/PHP)</li>
-              <li class="flex items-center">✅ Публикация в сторы</li>
-            </template>
-          </ServiceCard>
-
-        </div>
-      </div>
-    </section>
-
+    <Aboutus />
+    <DevelopmentStages />
     <ContactForm />
-
     <TheFooter />
   </div>
 </template>

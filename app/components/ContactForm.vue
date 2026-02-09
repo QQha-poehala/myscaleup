@@ -57,11 +57,7 @@
             <!-- Мессенджеры -->
              <div class="flex flex-wrap gap-3 pt-6">
               
-              <!-- WhatsApp -->
-              <a href="#" class="group flex items-center gap-3 px-5 py-3 bg-white/5 border border-white/10 rounded-full hover:bg-green-600/20 hover:border-green-600/50 transition-all hover:-translate-y-1">
-                <img src="/whatsapplogo.png" alt="WhatsApp" class="w-6 h-6 object-contain" />
-                <span class="font-medium text-gray-300 group-hover:text-green-400 transition-colors">WhatsApp</span>
-              </a>
+              
 
               <!-- Telegram -->
               <a href="#" class="group flex items-center gap-3 px-5 py-3 bg-white/5 border border-white/10 rounded-full hover:bg-blue-500/20 hover:border-blue-500/50 transition-all hover:-translate-y-1">
@@ -74,7 +70,12 @@
                 <img src="/maxlogo.png" alt="Max" class="w-6 h-6 object-contain rounded-full" />
                 <span class="font-medium text-gray-300 group-hover:text-purple-400 transition-colors">MAX</span>
               </a>
-
+              
+              <!-- WhatsApp -->
+              <a href="#" class="group flex items-center gap-3 px-5 py-3 bg-white/5 border border-white/10 rounded-full hover:bg-green-600/20 hover:border-green-600/50 transition-all hover:-translate-y-1">
+                <img src="/whatsapplogo.png" alt="WhatsApp" class="w-6 h-6 object-contain" />
+                <span class="font-medium text-gray-300 group-hover:text-green-400 transition-colors">WhatsApp</span>
+              </a>
             </div>
 
             <!-- Адрес -->
