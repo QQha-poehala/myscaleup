@@ -31,40 +31,7 @@ useSeoMeta({
       </div>
     </section>
 
-    <!-- О КОМПАНИИ -->
-    <section class="py-20 px-6">
-      <div class="container mx-auto">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div class="relative">
-            <!-- Плейсхолдер для фото команды/офиса -->
-            <div class="bg-gray-200 rounded-2xl h-[400px] w-full flex items-center justify-center text-gray-400">
-              <span class="text-lg">Фото команды / Офиса</span>
-            </div>
-            <!-- Декоративный элемент -->
-            <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-red-50 rounded-full -z-10"></div>
-          </div>
-          <div>
-            <h2 class="text-3xl font-bold mb-6">Команда ScaleUp</h2>
-            <p class="text-gray-600 mb-4 text-lg">
-              Мы не просто "настройщики". Мы — инженеры бизнес-процессов.
-            </p>
-            <p class="text-gray-600 mb-6 leading-relaxed">
-              ScaleUp специализируется на сложной технической разработке для CRM-систем. Там, где штатные инструменты заканчиваются, начинаем работать мы. Создаем тиражные приложения для Маркетплейсов и локальные решения под уникальные задачи бизнеса.
-            </p>
-            <div class="grid grid-cols-2 gap-6">
-              <div class="border-l-4 border-red-500 pl-4">
-                <div class="text-3xl font-bold text-gray-900">50+</div>
-                <div class="text-sm text-gray-500">Реализованных проектов</div>
-              </div>
-              <div class="border-l-4 border-red-500 pl-4">
-                <div class="text-3xl font-bold text-gray-900">10+</div>
-                <div class="text-sm text-gray-500">Собственных приложений</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <Aboutus />
 
     <!-- УСЛУГИ (Блоки) -->
      <section class="py-20 bg-gray-50 px-6" id="services">

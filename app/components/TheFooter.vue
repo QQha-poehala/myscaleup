@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="text-center text-gray-600 pt-8 border-t border-gray-800">
-        © {{ new Date().getFullYear() }} ScaleUp. Все права защищены.
+        © {{ new Date().getFullYear() }} ScaleUp
       </div>
     </div>
   </footer>
