@@ -32,6 +32,7 @@ useSeoMeta({
     </section>
 
     <Aboutus />
+    <TheBenefits />
     <DevelopmentStages />
     <ContactForm />
     <TheFooter />
