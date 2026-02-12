@@ -102,7 +102,7 @@ const toggle = (index) => {
         <!-- Фотография -->
         <div class="relative hidden lg:block h-full min-h-[700px]">
           <img 
-            src="/faq.png" 
+            src="/FAQ_scaleup.png" 
             alt="FAQ" 
             class="absolute inset-0 w-full h-full object-cover rounded-3xl shadow-2xl"
           />

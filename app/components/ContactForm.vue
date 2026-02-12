@@ -64,7 +64,7 @@
                 <span class="font-medium text-gray-300 group-hover:text-blue-400 transition-colors">Telegram</span>
               </a>
 
-              <!-- Виджет Max (дополнительная кнопка) -->
+              <!-- Виджет Max -->
               <a href="#" class="group flex items-center gap-3 px-5 py-3 bg-white/5 border border-white/10 rounded-full hover:bg-purple-600/20 hover:border-purple-600/50 transition-all hover:-translate-y-1">
                 <img src="/maxlogo.png" alt="Max" class="w-6 h-6 object-contain rounded-full" />
                 <span class="font-medium text-gray-300 group-hover:text-purple-400 transition-colors">MAX</span>
@@ -93,7 +93,7 @@
         <!-- ПРАВАЯ КОЛОНКА: Форма -->
         <div>
           <form class="bg-white/5 p-8 rounded-3xl backdrop-blur-md border border-white/10 shadow-2xl">
-            <h3 class="text-white text-xl font-bold mb-6">Заявка на аудит</h3>
+            <h3 class="text-white text-xl font-bold mb-6">Оставьте контакты и мы предложим наилучшее решение</h3>
             
             <div class="space-y-4">
               <div>

@@ -17,10 +17,8 @@ defineProps({
 
     <!-- Иконка -->
     <div class="relative w-16 h-16 mb-6">
-      <!-- Подложка иконки -->
       <div class="absolute inset-0 bg-white rounded-2xl shadow-sm border border-gray-100 transition-all duration-500 group-hover:bg-gradient-to-br group-hover:from-red-500 group-hover:to-red-700 group-hover:border-red-500 group-hover:rotate-6"></div>
       
-      <!-- Сама -->
       <div class="relative z-10 w-full h-full flex items-center justify-center text-gray-800 transition-colors duration-500 group-hover:text-white">
         <slot name="icon" />
       </div>
