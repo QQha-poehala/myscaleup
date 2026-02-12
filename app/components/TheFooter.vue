@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
+  <footer class="bg-gray-900 text-white py-10 border-t border-gray-800">
     <div class="container mx-auto px-6">
       <div class="grid md:grid-cols-3 gap-8 mb-8">
         <div>
@@ -24,7 +24,7 @@
           </ul>
         </div>
       </div>
-      <div class="text-center text-gray-600 pt-8 border-t border-gray-800">
+      <div class="text-center text-gray-600 pt-2 border-t border-gray-800">
         © {{ new Date().getFullYear() }} ScaleUp
       </div>
     </div>

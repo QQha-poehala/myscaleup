@@ -10,7 +10,6 @@
       class="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
       style="background-image: url('/footpage.jpg');"
     ></div>
-    <!-- ЗАТЕМНЕНИЕ-->
     <div class="absolute inset-0 bg-gray-900/95 z-0"></div>
 
     <!-- КОНТЕНТ ФОРМЫ -->

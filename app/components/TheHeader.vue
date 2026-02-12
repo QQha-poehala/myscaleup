@@ -3,8 +3,6 @@
     <div class="container mx-auto px-6 h-[85px] flex items-center justify-between">
       <!-- Логотип -->
        <NuxtLink to="/" class="flex items-center gap-3 group">
-        <!-- Картинка логотипа -->
-        <!-- scale-[1.2] означает увеличение в 1.2 раза (на 20%) -->
         <img 
           src="/logo.png" 
           alt="ScaleUp Logo" 
@@ -12,7 +10,6 @@
         >
       </NuxtLink>
 
-      <!-- Меню (для десктопа) -->
       <nav class="hidden lg:flex items-center gap-8 font-medium">
         <NuxtLink to="/"  class="text-gray-600 hover:text-red-600 transition-all duration-300 transform hover:scale-[1.2] inline-block origin-center">Главная</NuxtLink>
         <a href="#bitrix" class="text-gray-600 hover:text-red-600 transition-all duration-300 transform hover:scale-[1.2] inline-block origin-center">Битрикс24</a>

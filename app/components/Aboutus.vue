@@ -11,7 +11,7 @@
                 class="rounded-3xl w-full h-[500px] object-cover shadow-2xl transition-transform duration-500 group-hover:scale-[1.01]"
                 />
                 
-                <!-- Декоративный элемент (красный круг сзади) -->
+                <!-- Декоративный элемент -->
                 <div class="absolute -top-6 -left-6 w-32 h-32 bg-red-100 rounded-full -z-10 blur-xl opacity-70"></div>
                 <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-gray-100 rounded-full -z-10"></div>
             </div>

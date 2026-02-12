@@ -33,7 +33,10 @@ useSeoMeta({
 
     <Aboutus />
     <TheBenefits />
+    <ThePainPoints />
     <DevelopmentStages />
+    <TheCases />
+    <TheFAQ />
     <ContactForm />
     <TheFooter />
   </div>

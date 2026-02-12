@@ -59,9 +59,6 @@ const stages = [
         </p>
       </div>
 
-      <!-- СЕТКА (GRID) -->
-      <!-- gap-x-12: дает место для стрелки справа на планшете/ПК -->
-      <!-- gap-y-12: дает место для стрелки снизу на телефоне -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12 lg:gap-y-16">
         
         <div 
@@ -73,12 +70,7 @@ const stages = [
             'md:mx-auto md:w-2/3 lg:w-full lg:mx-0': index === 6
           }" 
         >
-          <!-- 
-            Логика центровки 7-го элемента (:class выше):
-            1. На планшете (md) он занимает 2 колонки (всю ширину), и мы сжимаем его до 2/3 и центруем.
-            2. На ПК (lg) он встает во 2-ю колонку (по центру).
-          -->
-          
+
           <!-- САМА КАРТОЧКА -->
           <div class="relative bg-white rounded-2xl p-8 border border-gray-100 hover:shadow-xl hover:shadow-red-900/5 hover:-translate-y-2 transition-all duration-300 overflow-hidden h-full z-10">
             <!-- Красная полоска сверху -->
@@ -107,9 +99,6 @@ const stages = [
             </div>
           </div>
 
-          <!-- СТРЕЛКА -->
-          <!-- ИЗМЕНЕНИЯ: заменил lg: на md: -->
-          <!-- Теперь на планшете (md) стрелка уже сбоку -->
           <div 
             v-if="index !== stages.length - 1" 
             class="absolute text-gray-300 z-0 transition-colors duration-300 group-hover:text-red-500
