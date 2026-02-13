@@ -1,79 +1,97 @@
 <script setup>
 import { ref } from 'vue'
+import AppButton from './AppButton.vue' // Убедитесь, что путь правильный
 
 const questions = [
   {
-    q: 'Сколько времени занимает внедрение?',
-    a: 'Базовое внедрение занимает от 3 до 7 дней. Сложные проекты с разработкой и интеграциями могут длиться от 2 до 6 недель. Мы фиксируем сроки в договоре.'
+    q: 'Зачем нам CRM, если у нас небольшая компания?',
+    a: '<p class="mb-3">Размер бизнеса не имеет значения, важна цель — прибыль. CRM исключает потерю заявок, помогает менеджерам не забывать о клиентах, а владельцу — видеть реальную аналитику.</p><p>Мы специализируемся на масштабировании, поэтому настраиваем систему так, чтобы она была удобна вам сейчас, но имела запас прочности для роста в будущем.'
   },
   {
-    q: 'Нужно ли останавливать работу компании?',
-    a: 'Нет. Мы настраиваем систему параллельно с вашей работой. Переход происходит плавно: сначала обучаем сотрудников, потом переключаем процессы в новую CRM.'
+    q: 'Можно ли настроить систему один раз и больше не трогать?',
+    a: '<p class="mb-3">Да, такое возможно. В 50% случаев мы сдаем готовое решение «под ключ», и клиент просто работает.</p><p>Однако бизнес — это живой организм. Часто мы предлагаем стратегию <b>MVP</b>: быстро запускаем основные функции, чтобы вы начали продавать, а затем постепенно докручиваем систему, опираясь на вашу реальную практику. Это быстрее и дешевле, чем пытаться предусмотреть всё на старте.</p>'
   },
   {
-    q: 'Входит ли обучение в стоимость?',
-    a: 'Да, обязательно. Мы проводим онлайн-вебинар для сотрудников, записываем видеоинструкции и пишем регламенты. Вы получаете не просто программу, а обученную команду.'
+    q: 'У нас узкая сфера деятельности, подойдет ли нам универсальная CRM?',
+    a: '<p class="mb-3">Специализированные отраслевые программы часто имеют ограничения. Большие платформы хороши тем, что они гибкие.</p><p>Мы адаптируем их под ваши процессы с помощью настроек, а если штатного функционала не хватит — наш отдел разработки напишет собственное приложение или виджет специально под ваши задачи.</p>'
   },
   {
-    q: 'Что, если нам не подойдет Битрикс24?',
-    a: 'На этапе аудита мы честно скажем, какая система лучше решит ваши задачи (amoCRM или Битрикс24). Если ни одна из них не подходит — мы не будем навязывать внедрение.'
+    q: 'У нас уже есть программист в штате, зачем нам вы?',
+    a: '<p class="mb-3">Ваш специалист может быть отличным «универсальным бойцом», но мы занимаемся внедрением CRM каждый день. Мы знаем не только техническую часть, но и логику продаж.</p><p>Часто мы работаем в связке: ваш IT-специалист курирует проект изнутри, а мы реализуем сложные архитектурные решения и интеграции, требующие профильной экспертизы.</p>'
   },
   {
-    q: 'Есть ли техническая поддержка?',
-    a: 'Да, после сдачи проекта мы предоставляем 2 недели бесплатного сопровождения: отвечаем на вопросы, правим мелкие недочеты и помогаем привыкнуть к системе.'
+    q: 'Может ли вырасти цена в процессе работы?',
+    a: '<p class="mb-3">Мы за честность. Если объем задач зафиксирован в Техническом задании — <b>цена не изменится</b>, даже если мы потратим больше часов, чем планировали.</p><p>Стоимость меняется если в процессе вы захотите добавить новые функции, которые не обсуждались ранее.</p>'
+  },
+  {
+    q: 'Почему такой разброс цен на рынке? Мне предлагали дешевле.',
+    a: '<p class="mb-3">Дьявол кроется в деталях. Низкая цена часто означает работу «по шаблону» без погружения в ваши процессы или использование стажеров.</p><p>Мы — молодой бренд, поэтому наши цены ниже, чем у неповоротливых гигантов рынка, но опыт команды (Middle/Senior) позволяет гарантировать качество. Сравнивайте не цифру, а состав работ: часы, обучение, поддержку.</p>'
+  },
+  {
+    q: 'Как формируется стоимость и сроки?',
+    a: '<p class="mb-3">Цена зависит от сложности процессов и интеграций (1С, сайты, мессенджеры). Процесс выглядит так:</p><ul class="list-disc pl-5 space-y-1 mb-3"><li>Аудит и формирование сметы/ТЗ.</li><li>Фиксация цены и сроков в договоре.</li><li>Настройка и сдача.</li></ul><p>Базовое внедрение обычно занимает от 14 до 21 рабочего дня.</p>'
+  },
+  {
+    q: 'Чем «Аудит» отличается от «Технического задания»?',
+    a: '<p class="mb-3"><b>Аудит</b> — это диагноз. Мы ищем «узкие места» в текущей работе и говорим, как их исправить.</p><p><b>ТЗ</b> — это план строительства. Документ, где техническим языком прописано: какие поля создать, как работает автоматизация, какие отчеты нужны. ТЗ необходимо, чтобы результат на 100% совпал с ожиданиями.</p>'
+  },
+  {
+    q: 'Какие гарантии вы предоставляете?',
+    a: '<p>Мы гарантируем полное соответствие настроек Техническому заданию. Если после сдачи проекта вы найдете ошибку или что-то перестанет работать по нашей вине — мы устраним проблему бесплатно и оперативно.</p>'
+  },
+  {
+    q: 'Сгорают ли часы техподдержки?',
+    a: '<p>Нет. Мы считаем, что это несправедливо. Приобретая пакет часов (10, 20, 40), вы можете расходовать их когда угодно: хоть через месяц, хоть через год. Часы можно тратить на доработки, обучение новых сотрудников или консультации.</p>'
   }
 ]
 
 const activeIndex = ref(0) 
 
 const toggle = (index) => {
-  if (activeIndex.value === index) {
-    activeIndex.value = null
-  } else {
-    activeIndex.value = index
-  }
+  activeIndex.value = activeIndex.value === index ? null : index
 }
 </script>
 
 <template>
-  <section class="py-24 bg-white px-6 relative overflow-hidden">
+  <section class="py-20 md:py-24 bg-white px-6 relative overflow-hidden">
 
-    <div class="absolute top-0 left-0 w-full overflow-hidden leading-none z-10">
+    <!-- Фоновый элемент (SVG) -->
+    <div class="absolute top-0 left-0 w-full overflow-hidden leading-none z-10 pointer-events-none">
       <svg class="relative block w-full h-12 md:h-20" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M1200 120L0 16.48V0h1200v120z" class="fill-gray-900"></path>
+        <path d="M1200 120L0 16.48V0h1200v120z" class="fill-gray-50"></path>
       </svg>
     </div>
 
     <div class="container mx-auto relative z-20">
-      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
         
-        <!-- ЛЕВАЯ КОЛОНКА -->
+        <!-- ЛЕВАЯ КОЛОНКА  -->
         <div>
           <div class="mb-10">
             <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-gray-900">
-              Часто задаваемые  <span class="text-red-600">вопросы</span>
+              Часто задаваемые <span class="text-red-600">вопросы</span>
             </h2>
           </div>
 
-          <div class="space-y-4">
+          <div class="space-y-3">
             <div 
               v-for="(item, index) in questions" 
               :key="index"
               class="group"
             >
-              <!-- КНОПКА -->
+              <!-- КНОПКА ВОПРОСА -->
               <button 
                 @click="toggle(index)"
-                class="w-full flex items-center justify-between p-6 rounded-3xl border transition-all duration-300 text-left outline-none"
+                class="w-full flex items-center justify-between p-4 md:p-5 rounded-3xl border transition-all duration-300 text-left outline-none select-none"
                 :class="[
                   activeIndex === index 
-                    ? 'bg-gray-900 border-gray-900 text-white shadow-lg' 
-                    : 'bg-white border-gray-200 text-gray-800 hover:border-red-500 hover:text-red-600'
+                    ? 'bg-gray-900 border-gray-900 text-white shadow-xl' 
+                    : 'bg-white border-gray-200 text-gray-800 hover:border-red-500 hover:text-red-600 hover:shadow-md'
                 ]"
               >
-                <span class="font-bold text-lg pr-4">{{ item.q }}</span>
+                <span class="font-bold text-base md:text-lg pr-4 leading-snug">{{ item.q }}</span>
                 
-                <!-- Стрелка -->
+                <!-- Иконка стрелки -->
                 <span 
                   class="w-8 h-8 flex items-center justify-center rounded-full border shrink-0 transition-transform duration-300"
                   :class="[
@@ -91,23 +109,49 @@ const toggle = (index) => {
               <!-- ОТВЕТ -->
               <div 
                 v-show="activeIndex === index"
-                class="px-6 pb-4 pt-2 text-gray-600 leading-relaxed"
+                class="overflow-hidden transition-all duration-300"
               >
-                {{ item.a }}
+                <div 
+                  class="px-5 pb-6 pt-4 text-gray-600 leading-relaxed text-base border-l-2 border-gray-100 ml-5 mt-2"
+                  v-html="item.a"
+                ></div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Фотография -->
-        <div class="relative hidden lg:block h-full min-h-[700px]">
-          <img 
-            src="/FAQ_scaleup.png" 
-            alt="FAQ" 
-            class="absolute inset-0 w-full h-full object-cover rounded-3xl shadow-2xl"
-          />
+        <!-- ПРАВАЯ КОЛОНКА -->
+        <div class="hidden lg:block sticky top-24">
+          
+          <div class="bg-white rounded-3xl shadow-2xl p-2 border border-gray-100">
+            <img 
+              src="/FAQ_scaleup.png" 
+              alt="Команда ScaleUp" 
+              class="w-full h-auto object-cover rounded-2xl mb-6"
+            />
+
+            <div class="text-center px-4 pb-6">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">
+                Не нашли ответа?
+              </h3>
+              <p class="text-gray-500 mb-6 text-sm">
+                Свяжитесь с нами — мы проконсультируем вас и подберем лучшее решение.
+              </p>
+              
+              <AppButton to="#contact" variant="primary" class="w-full">
+                Задать вопрос
+              </AppButton>
+            </div>
+          </div>
+
         </div>
+
       </div>
     </div>
   </section>
 </template>
+
+
+
+
+
