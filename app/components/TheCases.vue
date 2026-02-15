@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue'
+import CaseCard from './CaseCard.vue' 
 
 const cases = [
   {
@@ -40,10 +41,10 @@ const cases = [
   }
 ]
 
-
 const currentIndex = ref(0)
-const itemsPerPage = ref(3) // Сколько карточек на экране
+const itemsPerPage = ref(3) // По умолчанию 3, но пересчитается при маунте
 
+// Логика адаптивности (сколько карточек показывать)
 const updateItemsPerPage = () => {
   const width = window.innerWidth
   if (width < 768) {
@@ -55,6 +56,18 @@ const updateItemsPerPage = () => {
   }
 }
 
+// Логика кнопки "Вправо"
+// Сдвигаем индекс. Если дошли до края (total - visible), сбрасываем в 0.
+const nextSlide = () => {
+  const maxIndex = cases.length - itemsPerPage.value
+  
+  if (currentIndex.value < maxIndex) {
+    currentIndex.value++
+  } else {
+    currentIndex.value = 0
+  }
+}
+
 onMounted(() => {
   updateItemsPerPage()
   window.addEventListener('resize', updateItemsPerPage)
@@ -63,74 +76,57 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('resize', updateItemsPerPage)
 })
-
-const nextSlide = () => {
-  const maxIndex = cases.length - itemsPerPage.value
-  if (currentIndex.value >= maxIndex) {
-    currentIndex.value = 0
-  } else {
-    currentIndex.value++
-  }
-}
-
-const prevSlide = () => {
-  const maxIndex = cases.length - itemsPerPage.value
-  if (currentIndex.value <= 0) {
-    currentIndex.value = maxIndex
-  } else {
-    currentIndex.value--
-  }
-}
 </script>
 
 <template>
-  <section id="experience" class="relative bg-gray-900 overflow-hidden -mx-3 px-6 py-24">
-    
-    <!-- ВЕРХНИЙ ПЕРЕХОД -->
-    <div class="absolute top-0 left-0 w-full overflow-hidden leading-none z-10">
-      <svg class="relative block w-full h-12 md:h-20" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"  shape-rendering="geometricPrecision">
-        <path d="M1200 120L0 16.48V0h1200v120z" class="fill-gray-50"></path>
-      </svg>
-    </div>
-
-    <div class="container mx-auto relative z-20">
+  <!-- 
+    bg-gray-900: Темный фон.
+    -mb-px: Отрицательный отступ в 1px снизу. 
+    Это заставляет следующий блок (FAQ) наехать на 1 пиксель на этот блок.
+    Это физически уничтожает любую возможность появления "серой линии" между блоками.
+    z-10: Чтобы лежать под следующим блоком.
+  -->
+  <section id="experience" class="bg-gray-900 py-24 relative z-10 -mb-px">
+    <div class="container mx-auto px-6">
       
-      <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+      <!-- Шапка: Заголовок + Кнопка -->
+      <div class="flex flex-row justify-between items-end mb-12 gap-6">
+        
+        <!-- Заголовок -->
         <div class="max-w-2xl">
-          <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-white">
-            Нам доверяют <span class="text-red-500">свой рост</span>
+          <h2 class="text-3xl md:text-4xl font-extrabold mb-0 text-white leading-tight">
+            Нам доверяют <span class="text-red-600">свой рост</span>
           </h2>
-
         </div>
 
-        <!-- Кнопки навигации (Десктоп) -->
-        <div class="hidden md:flex gap-3">
-          <button @click="prevSlide" class="w-12 h-12 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 hover:border-red-500 hover:text-white hover:bg-red-600 transition-all active:scale-95">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-            </svg>
-          </button>
-          <button @click="nextSlide" class="w-12 h-12 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 hover:border-red-500 hover:text-white hover:bg-red-600 transition-all active:scale-95">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-            </svg>
-          </button>
-        </div>
+        <!-- Кнопка (Стрелка вправо) -->
+        <button 
+          @click="nextSlide" 
+          class="shrink-0 w-14 h-14 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 bg-transparent hover:border-red-600 hover:text-white hover:bg-red-600 transition-all duration-300 active:scale-95 group focus:outline-none"
+          aria-label="Следующий кейс"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 transform group-hover:translate-x-1 transition-transform">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+          </svg>
+        </button>
       </div>
 
-      <!-- ОКНО СЛАЙДЕРА -->
-      <div class="overflow-hidden -mx-3 px-3 py-4">
+      <!-- Контейнер слайдера -->
+      <!-- overflow-hidden только здесь. Он не режет фон секции, а только скрывает карточки -->
+      <div class="overflow-hidden -mx-4 px-4 py-4">
+        
+        <!-- Движущаяся лента -->
         <div 
-          class="flex transition-transform duration-500 ease-out"
+          class="flex transition-transform duration-500 ease-in-out"
           :style="{ transform: `translateX(-${currentIndex * (100 / itemsPerPage)}%)` }"
         >
           <div 
             v-for="(item, index) in cases" 
             :key="index"
-            class="shrink-0 box-border p-3"
+            class="shrink-0 px-3 box-border"
             :style="{ width: `${100 / itemsPerPage}%` }"
           >
-            <!-- Карточки остаются белыми для контраста -->
+            <!-- Карточка -->
             <CaseCard 
               :logo="item.logo"
               :company="item.company"
@@ -139,20 +135,6 @@ const prevSlide = () => {
             />
           </div>
         </div>
-      </div>
-
-      <!-- Кнопки навигации (Мобильные) -->
-      <div class="flex md:hidden gap-3 justify-center mt-6">
-        <button @click="prevSlide" class="w-12 h-12 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 hover:border-red-500 hover:text-white hover:bg-red-600 transition-all">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-          </svg>
-        </button>
-        <button @click="nextSlide" class="w-12 h-12 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 hover:border-red-500 hover:text-white hover:bg-red-600 transition-all">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-          </svg>
-        </button>
       </div>
 
     </div>

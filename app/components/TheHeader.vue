@@ -12,7 +12,7 @@
 
       <nav class="hidden lg:flex items-center gap-8 font-medium">
         <NuxtLink to="/"  class="text-gray-600 hover:text-red-600 transition-all duration-300 transform hover:scale-[1.2] inline-block origin-center">Главная</NuxtLink>
-        <a href="#bitrix" class="text-gray-600 hover:text-red-600 transition-all duration-300 transform hover:scale-[1.2] inline-block origin-center">Битрикс24</a>
+        <NuxtLink to="/bitrix24" class="text-gray-600 hover:text-red-600 transition-all duration-300 transform hover:scale-[1.2] inline-block origin-center">Битрикс24</NuxtLink>
         
         <div class="relative group cursor-default text-gray-400"> amoCRM
           <BadgeSoon />

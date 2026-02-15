@@ -25,7 +25,7 @@ const questions = [
   },
   {
     q: 'Почему такой разброс цен на рынке? Мне предлагали дешевле.',
-    a: '<p class="mb-3">Дьявол кроется в деталях. Низкая цена часто означает работу «по шаблону» без погружения в ваши процессы или использование стажеров.</p><p>Мы — молодой бренд, поэтому наши цены ниже, чем у неповоротливых гигантов рынка, но опыт команды (Middle/Senior) позволяет гарантировать качество. Сравнивайте не цифру, а состав работ: часы, обучение, поддержку.</p>'
+    a: '<p class="mb-3">Дьявол кроется в деталях. Низкая цена часто означает работу «по шаблону» без погружения в ваши процессы или использование стажеров.</p><p>Мы — молодой бренд, поэтому наши цены ниже, чем у неповоротливых гигантов рынка, но опыт команды позволяет гарантировать качество. Сравнивайте не цифру, а состав работ: часы, обучение, поддержку.</p>'
   },
   {
     q: 'Как формируется стоимость и сроки?',
@@ -53,19 +53,14 @@ const toggle = (index) => {
 </script>
 
 <template>
-  <section class="py-20 md:py-24 bg-white px-6 relative overflow-hidden">
+  <section class="py-24 bg-white px-6 relative z-20">
 
-    <!-- Фоновый элемент (SVG) -->
-    <div class="absolute top-0 left-0 w-full overflow-hidden leading-none z-10 pointer-events-none">
-      <svg class="relative block w-full h-12 md:h-20" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M1200 120L0 16.48V0h1200v120z" class="fill-gray-50"></path>
-      </svg>
-    </div>
+
 
     <div class="container mx-auto relative z-20">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
         
-        <!-- ЛЕВАЯ КОЛОНКА  -->
+        <!-- ЛЕВАЯ КОЛОНКА -->
         <div>
           <div class="mb-10">
             <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-gray-900">
@@ -79,7 +74,6 @@ const toggle = (index) => {
               :key="index"
               class="group"
             >
-              <!-- КНОПКА ВОПРОСА -->
               <button 
                 @click="toggle(index)"
                 class="w-full flex items-center justify-between p-4 md:p-5 rounded-3xl border transition-all duration-300 text-left outline-none select-none"
@@ -90,8 +84,6 @@ const toggle = (index) => {
                 ]"
               >
                 <span class="font-bold text-base md:text-lg pr-4 leading-snug">{{ item.q }}</span>
-                
-                <!-- Иконка стрелки -->
                 <span 
                   class="w-8 h-8 flex items-center justify-center rounded-full border shrink-0 transition-transform duration-300"
                   :class="[
@@ -106,15 +98,8 @@ const toggle = (index) => {
                 </span>
               </button>
 
-              <!-- ОТВЕТ -->
-              <div 
-                v-show="activeIndex === index"
-                class="overflow-hidden transition-all duration-300"
-              >
-                <div 
-                  class="px-5 pb-6 pt-4 text-gray-600 leading-relaxed text-base border-l-2 border-gray-100 ml-5 mt-2"
-                  v-html="item.a"
-                ></div>
+              <div v-show="activeIndex === index" class="overflow-hidden transition-all duration-300">
+                <div class="px-5 pb-6 pt-4 text-gray-600 leading-relaxed text-base border-l-2 border-gray-100 ml-5 mt-2" v-html="item.a"></div>
               </div>
             </div>
           </div>
@@ -122,36 +107,17 @@ const toggle = (index) => {
 
         <!-- ПРАВАЯ КОЛОНКА -->
         <div class="hidden lg:block sticky top-24">
-          
           <div class="bg-white rounded-3xl shadow-2xl p-2 border border-gray-100">
-            <img 
-              src="/FAQ_scaleup.png" 
-              alt="Команда ScaleUp" 
-              class="w-full h-auto object-cover rounded-2xl mb-6"
-            />
-
+            <img src="/FAQ_scaleup.png" alt="Команда ScaleUp" class="w-full h-auto object-cover rounded-2xl mb-6" />
             <div class="text-center px-4 pb-6">
-              <h3 class="text-xl font-bold text-gray-900 mb-2">
-                Не нашли ответа?
-              </h3>
-              <p class="text-gray-500 mb-6 text-sm">
-                Свяжитесь с нами — мы проконсультируем вас и подберем лучшее решение.
-              </p>
-              
-              <AppButton to="#contact" variant="primary" class="w-full">
-                Задать вопрос
-              </AppButton>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Не нашли ответа?</h3>
+              <p class="text-gray-500 mb-6 text-sm">Свяжитесь с нами — мы проконсультируем вас и подберем лучшее решение.</p>
+              <AppButton to="#contact" variant="primary" class="w-full">Задать вопрос</AppButton>
             </div>
           </div>
-
         </div>
 
       </div>
     </div>
   </section>
 </template>
-
-
-
-
-
