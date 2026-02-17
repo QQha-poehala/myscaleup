@@ -50,19 +50,42 @@ const activeIndex = ref(null)
 const toggle = (index) => {
   activeIndex.value = activeIndex.value === index ? null : index
 }
+
+const sectionRef = ref(null)
+const isVisible = ref(false)
+let observer = null
+
+onMounted(() => {
+  observer = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      isVisible.value = true
+      observer.disconnect()
+    }
+  }, { threshold: 0.1 })
+
+  if (sectionRef.value) {
+    observer.observe(sectionRef.value)
+  }
+})
+
+onUnmounted(() => {
+  if (observer) observer.disconnect()
+})
 </script>
 
 <template>
-  <section class="py-24 bg-white px-6 relative z-20">
-
-
+  <section ref="sectionRef" class="py-24 bg-white px-6 relative z-20 overflow-hidden">
 
     <div class="container mx-auto relative z-20">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
         
         <!-- ЛЕВАЯ КОЛОНКА -->
         <div>
-          <div class="mb-10">
+          <!-- ЗАГОЛОВОК (Вылет слева) -->
+          <div 
+            class="mb-10 transition-all duration-1000 ease-out transform"
+            :class="isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'"
+          >
             <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-gray-900">
               Часто задаваемые <span class="text-red-600">вопросы</span>
             </h2>
@@ -72,8 +95,11 @@ const toggle = (index) => {
             <div 
               v-for="(item, index) in questions" 
               :key="index"
-              class="group"
+              class="group transition-all duration-700 ease-out transform"
+              :class="isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'"
+              :style="{ transitionDelay: `${200 + (index * 100)}ms` }"
             >
+              <!-- Кнопка вопроса -->
               <button 
                 @click="toggle(index)"
                 class="w-full flex items-center justify-between p-4 md:p-5 rounded-3xl border transition-all duration-300 text-left outline-none select-none"
@@ -92,12 +118,11 @@ const toggle = (index) => {
                       : 'bg-transparent border-gray-300 group-hover:border-red-500'
                   ]"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
                 </span>
               </button>
 
+              <!-- Ответ -->
               <div v-show="activeIndex === index" class="overflow-hidden transition-all duration-300">
                 <div class="px-5 pb-6 pt-4 text-gray-600 leading-relaxed text-base border-l-2 border-gray-100 ml-5 mt-2" v-html="item.a"></div>
               </div>
@@ -105,8 +130,11 @@ const toggle = (index) => {
           </div>
         </div>
 
-        <!-- ПРАВАЯ КОЛОНКА -->
-        <div class="hidden lg:block sticky top-24">
+        <!-- ПРАВАЯ КОЛОНКА (Вылет справа) -->
+        <div 
+          class="hidden lg:block sticky top-24 transition-all duration-1000 ease-out transform"
+          :class="isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'"
+        >
           <div class="bg-white rounded-3xl shadow-2xl p-2 border border-gray-100">
             <img src="/FAQ_scaleup.png" alt="Команда ScaleUp" class="w-full h-auto object-cover rounded-2xl mb-6" />
             <div class="text-center px-4 pb-6">

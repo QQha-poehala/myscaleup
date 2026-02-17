@@ -35,7 +35,7 @@ useSeoMeta({
     <TheBenefits />
     <ThePainPoints />
     <DevelopmentStages />
-    <!--<TheCases /> -->
+    <!--- <TheCases /> -->
     <TheFAQ />
     <ContactForm />
     <TheFooter />

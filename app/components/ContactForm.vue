@@ -3,7 +3,6 @@ import { computed } from 'vue'
 import AppButton from './AppButton.vue'
 
 const props = defineProps({
-  // 'red' или 'blue'
   color: { type: String, default: 'red' }
 })
 
@@ -20,7 +19,7 @@ const theme = computed(() => {
     : {
         highlight: 'text-red-500',
         hoverText: 'hover:text-red-500',
-        iconHoverBg: 'hover:bg-blue-500/20', // Для соцсетей оставляем брендовые цвета или делаем нейтральные
+        iconHoverBg: 'hover:bg-blue-500/20',
         iconHoverBorder: 'hover:border-blue-500/50',
         inputFocus: 'focus:border-red-500 focus:ring-red-500',
         btnVariant: 'primary'
@@ -75,7 +74,7 @@ const theme = computed(() => {
               </div>
             </div>
 
-            <!-- Мессенджеры (Соцсети обычно имеют свои брендовые цвета, их можно не менять) -->
+            <!-- Мессенджеры -->
              <div class="flex flex-wrap gap-3 pt-6">
               <a href="#" class="group flex items-center gap-3 px-5 py-3 bg-white/5 border border-white/10 rounded-full hover:bg-blue-500/20 hover:border-blue-500/50 transition-all hover:-translate-y-1">
                 <img src="/tglogo.png" alt="Telegram" class="w-6 h-6 object-contain" />
