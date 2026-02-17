@@ -102,18 +102,11 @@
           </p>
 
           <!-- КНОПКИ -->
-          <div class="pt-8 flex flex-col sm:flex-row gap-4 justify-start">
+           <div class="pt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <AppButton to="#contact" class="px-8 py-4 text-lg w-full sm:w-auto">
               Связаться
             </AppButton>
             
-            <a 
-              href="#" 
-              target="_blank"
-              class="px-8 py-4 rounded-full border border-gray-600 text-gray-300 font-bold text-lg hover:bg-white hover:text-gray-900 hover:border-white transition-all w-full sm:w-auto text-center"
-            >
-              Заполнить БРИФ
-            </a>
           </div>
 
         </div>

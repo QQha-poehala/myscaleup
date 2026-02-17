@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import AppButton from './AppButton.vue' // Убедитесь, что путь правильный
+import AppButton from './AppButton.vue'
 
 const questions = [
   {
@@ -45,7 +45,7 @@ const questions = [
   }
 ]
 
-const activeIndex = ref(0) 
+const activeIndex = ref(null) 
 
 const toggle = (index) => {
   activeIndex.value = activeIndex.value === index ? null : index

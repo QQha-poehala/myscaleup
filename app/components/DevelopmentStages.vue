@@ -1,4 +1,29 @@
 <script setup>
+import { computed } from 'vue'
+
+const props = defineProps({
+  color: { type: String, default: 'red' }
+})
+
+const themeClass = computed(() => {
+  return props.color === 'blue' 
+    ? {
+        text: 'text-blue-600',
+        bg: 'bg-blue-600',
+        hoverText: 'group-hover:text-blue-600',
+        hoverBg: 'group-hover:text-blue-50',
+        bullet: 'bg-blue-500',
+        shadow: 'hover:shadow-blue-900/5'
+      }
+    : {
+        text: 'text-red-600',
+        bg: 'bg-red-600',
+        hoverText: 'group-hover:text-red-600',
+        hoverBg: 'group-hover:text-red-50',
+        bullet: 'bg-red-500',
+        shadow: 'hover:shadow-red-900/5'
+      }
+})
 const stages = [
   {
     id: '1',
@@ -52,7 +77,7 @@ const stages = [
       <!-- Заголовок -->
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl font-extrabold mb-4">
-          7 шагов к <span class="text-red-600">системному</span> бизнесу
+          7 шагов к <span :class="themeClass.text">системному</span> бизнесу
         </h2>
         <p class="text-gray-500">
           Весь путь внедрения: от знакомства до результата.
@@ -60,29 +85,32 @@ const stages = [
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12 lg:gap-y-16">
-        
         <div 
           v-for="(stage, index) in stages" 
           :key="stage.id"
           class="relative group"
-          :class="{ 
-            'md:col-span-2 lg:col-span-1 lg:col-start-2': index === 6,
-            'md:mx-auto md:w-2/3 lg:w-full lg:mx-0': index === 6
-          }" 
+          :class="{ 'md:col-span-2 lg:col-span-1 lg:col-start-2': index === 6, 'md:mx-auto md:w-2/3 lg:w-full lg:mx-0': index === 6 }" 
         >
+          <div 
+            class="relative bg-white rounded-2xl p-8 border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 overflow-hidden h-full z-10"
+            :class="themeClass.shadow"
+          >
+            <!-- Цветная полоска сверху -->
+            <div class="absolute top-0 left-0 w-full h-1 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" :class="themeClass.bg"></div>
 
-          <!-- САМА КАРТОЧКА -->
-          <div class="relative bg-white rounded-2xl p-8 border border-gray-100 hover:shadow-xl hover:shadow-red-900/5 hover:-translate-y-2 transition-all duration-300 overflow-hidden h-full z-10">
-            <!-- Красная полоска сверху -->
-            <div class="absolute top-0 left-0 w-full h-1 bg-red-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-
-            <!-- Фоновая цифра -->
-            <div class="absolute -right-4 -top-6 text-8xl font-black text-gray-100 group-hover:text-red-50 transition-colors duration-300 select-none pointer-events-none">
+            <!-- Фоновая цифра (hover цвет) -->
+            <div 
+              class="absolute -right-4 -top-6 text-8xl font-black text-gray-100 transition-colors duration-300 select-none pointer-events-none"
+              :class="themeClass.hoverBg"
+            >
               {{ stage.id }}
             </div>
 
             <div class="relative z-10">
-              <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">
+              <h3 
+                class="text-xl font-bold text-gray-900 mb-2 transition-colors"
+                :class="themeClass.hoverText"
+              >
                 {{ stage.title }}
               </h3>
               
@@ -92,7 +120,7 @@ const stages = [
 
               <ul class="space-y-2">
                 <li v-for="bullet in stage.bullets" :key="bullet" class="flex items-start text-sm text-gray-600">
-                  <span class="w-1.5 h-1.5 bg-red-500 rounded-full mt-1.5 mr-2 shrink-0 opacity-70"></span>
+                  <span class="w-1.5 h-1.5 rounded-full mt-1.5 mr-2 shrink-0 opacity-70" :class="themeClass.bullet"></span>
                   {{ bullet }}
                 </li>
               </ul>
@@ -101,19 +129,13 @@ const stages = [
 
           <div 
             v-if="index !== stages.length - 1" 
-            class="absolute text-gray-300 z-0 transition-colors duration-300 group-hover:text-red-500
-                   left-1/2 -translate-x-1/2 -bottom-10 rotate-90
-                   md:left-auto md:translate-x-0 md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:-right-10 md:rotate-0"
+            class="absolute text-gray-300 z-0 transition-colors duration-300 left-1/2 -translate-x-1/2 -bottom-10 rotate-90 md:left-auto md:translate-x-0 md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:-right-10 md:rotate-0"
+            :class="themeClass.hoverText"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
           </div>
-
         </div>
-
       </div>
-
     </div>
   </section>
 </template>

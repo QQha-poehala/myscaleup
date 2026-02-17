@@ -1,9 +1,17 @@
+<script setup>
+defineProps({
+  color: { type: String, default: 'red' }
+})
+</script>
+
 <template>
   <footer class="bg-gray-900 text-white py-10 border-t border-gray-800">
     <div class="container mx-auto px-6">
       <div class="grid md:grid-cols-3 gap-8 mb-8">
         <div>
-          <div class="text-2xl font-bold mb-4">Scale<span class="text-red-500">Up</span></div>
+          <div class="text-2xl font-bold mb-4">
+            Scale<span :class="color === 'blue' ? 'text-blue-500' : 'text-red-500'">Up</span>
+          </div>
           <p class="text-gray-400">Масштабируем ваш бизнес с помощью передовых CRM-технологий и кастомной разработки.</p>
         </div>
         <div>
