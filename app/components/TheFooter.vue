@@ -28,12 +28,19 @@ defineProps({
           <ul class="text-gray-400 space-y-2">
             <li>Email: myscaleup@mail.ru</li>
             <li>Телефон: +7 (995) 576-38-03</li>
-            <li>Новосибирск</li>
           </ul>
         </div>
       </div>
-      <div class="text-center text-gray-600 pt-2 border-t border-gray-800">
-        © {{ new Date().getFullYear() }} ScaleUp
+      <div class="text-center text-gray-600 pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+        <div>© {{ new Date().getFullYear() }} ScaleUp. Все права защищены</div>
+        
+        <NuxtLink to="/agreement" class="hover:text-white transition-colors">
+          Согласие на обработку персональных данных
+        </NuxtLink>
+
+        <NuxtLink to="/policy" class="hover:text-white transition-colors">
+          Политика конфиденциальности
+        </NuxtLink>
       </div>
     </div>
   </footer>

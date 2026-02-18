@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, ref, reactive, onMounted } from 'vue'
 import AppButton from './AppButton.vue'
 
 const props = defineProps({
@@ -14,7 +14,8 @@ const theme = computed(() => {
         iconHoverBg: 'hover:bg-blue-500/20',
         iconHoverBorder: 'hover:border-blue-500/50',
         inputFocus: 'focus:border-blue-500 focus:ring-blue-500',
-        btnVariant: 'blue'
+        btnVariant: 'blue',
+        checkboxColor: 'text-blue-600 focus:ring-blue-500'
       }
     : {
         highlight: 'text-red-500',
@@ -22,9 +23,34 @@ const theme = computed(() => {
         iconHoverBg: 'hover:bg-blue-500/20',
         iconHoverBorder: 'hover:border-blue-500/50',
         inputFocus: 'focus:border-red-500 focus:ring-red-500',
-        btnVariant: 'primary'
+        btnVariant: 'primary',
+        checkboxColor: 'text-red-600 focus:ring-red-500'
       }
 })
+
+const isAgreed = ref(true)
+const formData = reactive({
+  name: '',
+  contact: '',
+  message: ''
+})
+
+const handleSubmit = () => {
+  if (!isAgreed.value) {
+    alert('Для отправки заявки необходимо подтвердить согласие на обработку персональных данных.')
+    return
+  }
+  if (!formData.name.trim() || !formData.contact.trim() || !formData.message.trim()) {
+    alert('Пожалуйста, заполните все поля формы.')
+    return
+  }
+   console.log('Форма отправлена!', formData)
+  alert('Спасибо! Мы свяжемся с вами в ближайшее время.')
+  
+  // ЛОГИКА ОТПРАВКИ 
+  console.log('Форма отправлена!')
+}
+
 const sectionRef = ref(null)
 const isVisible = ref(false)
 
@@ -127,13 +153,6 @@ onMounted(() => {
                 <span class="font-medium text-gray-300 group-hover:text-green-400 transition-colors">WhatsApp</span>
               </a>
             </div>
-            
-            <div class="flex items-center gap-4 pt-4">
-               <div class="w-10 h-10 flex items-center justify-center text-gray-500">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg>
-              </div>
-              <div class="text-gray-400 text-sm">Новосибирск</div>
-            </div>
           </div>
         </div>
 
@@ -147,23 +166,64 @@ onMounted(() => {
             <div class="space-y-4">
               <div>
                 <label class="text-xs font-medium text-gray-400 mb-1 block ml-1 uppercase tracking-wider">Ваше имя</label>
-                <input type="text" class="w-full bg-gray-900/50 border border-gray-600 rounded-xl px-4 py-4 text-white focus:outline-none focus:ring-1 transition-all placeholder-gray-600" :class="theme.inputFocus" placeholder="Иван Иванов">
+                <input 
+                  type="text" 
+                  v-model="formData.name"
+                  class="w-full bg-gray-900/50 border border-gray-600 rounded-xl px-4 py-4 text-white focus:outline-none focus:ring-1 transition-all placeholder-gray-600" 
+                  :class="theme.inputFocus" 
+                  placeholder="Иван Иванов"
+                >
               </div>
               <div>
                 <label class="text-xs font-medium text-gray-400 mb-1 block ml-1 uppercase tracking-wider">Email или Телефон</label>
-                <input type="text" class="w-full bg-gray-900/50 border border-gray-600 rounded-xl px-4 py-4 text-white focus:outline-none focus:ring-1 transition-all placeholder-gray-600" :class="theme.inputFocus" placeholder="+7 (999) ...">
+                <input 
+                  type="text" 
+                  v-model="formData.contact"
+                  class="w-full bg-gray-900/50 border border-gray-600 rounded-xl px-4 py-4 text-white focus:outline-none focus:ring-1 transition-all placeholder-gray-600" 
+                  :class="theme.inputFocus" 
+                  placeholder="+7 (999) ..."
+                > 
               </div>
               <div>
                 <label class="text-xs font-medium text-gray-400 mb-1 block ml-1 uppercase tracking-wider">Задача</label>
-                <textarea rows="3" class="w-full bg-gray-900/50 border border-gray-600 rounded-xl px-4 py-4 text-white focus:outline-none focus:ring-1 transition-all placeholder-gray-600" :class="theme.inputFocus" placeholder="Опишите ваш запрос..."></textarea>
+                <textarea 
+                  rows="3" 
+                  v-model="formData.message"
+                  class="w-full bg-gray-900/50 border border-gray-600 rounded-xl px-4 py-4 text-white focus:outline-none focus:ring-1 transition-all placeholder-gray-600" 
+                  :class="theme.inputFocus" 
+                  placeholder="Опишите ваш запрос..."
+                ></textarea>
               </div>
             </div>
             
-            <!-- Кнопка с динамическим вариантом -->
-            <AppButton type="button" class="w-full mt-6 py-4 text-lg" :variant="theme.btnVariant">
+            <div class="flex items-start gap-3 mt-4">
+              <input 
+                id="policy" 
+                type="checkbox" 
+                v-model="isAgreed"
+                class="mt-1 w-4 h-4 rounded border-gray-600 bg-gray-800 focus:ring-offset-gray-900 transition-colors cursor-pointer"
+                :class="theme.checkboxColor"
+              >
+              <label for="policy" class="text-xs text-gray-400 cursor-pointer select-none leading-relaxed">
+                Нажимая кнопку, я даю согласие на  
+                <NuxtLink to="/agreement" target="_blank" class="underline hover:text-white transition-colors">
+                  обработку персональных данных
+                </NuxtLink>
+                и соглашаюсь с 
+                <NuxtLink to="/policy" target="_blank" class="underline hover:text-white transition-colors">
+                  политикой конфиденциальности
+                </NuxtLink>
+              </label>
+            </div>
+
+            <AppButton 
+              type="button" 
+              class="w-full mt-6 py-4 text-lg" 
+              :variant="theme.btnVariant"
+              @click="handleSubmit"
+            >
               Отправить заявку
             </AppButton>
-            <p class="text-xs text-gray-500 text-center mt-4 opacity-70">Ваши данные в безопасности</p>
           </form>
         </div>
       </div>
