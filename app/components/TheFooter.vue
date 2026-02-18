@@ -27,7 +27,7 @@ defineProps({
           <h3 class="font-bold mb-4 text-lg">Контакты</h3>
           <ul class="text-gray-400 space-y-2">
             <li>Email: info@scaleup.ru</li>
-            <li>Телефон: +7 (952) 926-38-03</li>
+            <li>Телефон: +7 (995) 576-38-03</li>
             <li>Новосибирск</li>
           </ul>
         </div>

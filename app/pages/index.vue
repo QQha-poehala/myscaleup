@@ -19,7 +19,7 @@ useHead({
         "logo": "https://myscaleup.ru/logo.png",
         "contactPoint": {
           "@type": "ContactPoint",
-          "telephone": "", // надо будет добавить формат: +7-952-926-38-03
+          "telephone": "+7-995-576-38-03",
           "contactType": "sales",
           "areaServed": "RU",
           "availableLanguage": "Russian"

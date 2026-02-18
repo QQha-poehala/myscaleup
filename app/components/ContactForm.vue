@@ -80,7 +80,7 @@ onMounted(() => {
               </div>
               <div>
                 <div class="text-sm text-gray-400">Позвонить нам</div>
-                <a href="tel:+79529263803" class="text-xl font-bold transition-colors" :class="theme.hoverText">+7 (952) 926-38-03</a>
+                <a href="tel:+79529263803" class="text-xl font-bold transition-colors" :class="theme.hoverText">+7 (995) 576-38-03</a>
               </div>
             </div>
 
