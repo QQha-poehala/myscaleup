@@ -1,4 +1,5 @@
 <script setup>
+import { ref, onMounted } from 'vue'
 const features = [
   { title: 'CRM и Продажи', desc: 'Управляйте клиентами, а не записными книжками. Воронки, запись звонков, история.', icon: 'crm' },
   { title: 'Задачи и Проекты', desc: 'Канбан, Гант, Скрам. Контроль сроков и распределение нагрузки.', icon: 'tasks' },
@@ -9,12 +10,33 @@ const features = [
   { title: 'КЭДО', desc: 'Подписывайте отпуска и приказы онлайн без бумаги.', icon: 'doc' },
   { title: 'Совместная работа', desc: 'Живая лента, база знаний, диск и календарь.', icon: 'people' }
 ]
+const sectionRef = ref(null)
+const isVisible = ref(false)
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        isVisible.value = true
+        observer.disconnect()
+      }
+    },
+    { threshold: 0.1 } // Сработает, когда покажется 10% блока
+  )
+
+  if (sectionRef.value) {
+    observer.observe(sectionRef.value)
+  }
+})
 </script>
 
 <template>
-  <section id="features" class="py-24 bg-white px-6">
+  <section id="features" ref="sectionRef" class="py-24 bg-white px-6 overflow-hidden">
     <div class="container mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-16">
+      <div 
+        class="text-center max-w-3xl mx-auto mb-16 transition-all duration-700 ease-out delay-200"
+        :class="isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'"
+      >
         <h2 class="text-3xl md:text-4xl font-extrabold mb-4">
           Всё, что нужно для работы — <span class="text-blue-600">в одном окне</span>
         </h2>
@@ -27,7 +49,9 @@ const features = [
         <div 
           v-for="(feature, idx) in features" 
           :key="idx"
-          class="group p-8 rounded-3xl bg-white border border-gray-100 shadow-lg hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1"
+          class="group p-8 rounded-3xl bg-white border border-gray-100 shadow-lg hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-700 ease-out"
+          :class="isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'"
+          :style="{ transitionDelay: `${idx * 200 + 400}ms` }"
         >
           <div class="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center mb-6 group-hover:bg-blue-600 transition-colors duration-300">
             <img 

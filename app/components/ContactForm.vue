@@ -25,10 +25,28 @@ const theme = computed(() => {
         btnVariant: 'primary'
       }
 })
+const sectionRef = ref(null)
+const isVisible = ref(false)
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        isVisible.value = true
+        observer.disconnect()
+      }
+    },
+    { threshold: 0.2 } 
+  )
+
+  if (sectionRef.value) {
+    observer.observe(sectionRef.value)
+  }
+})
 </script>
 
 <template>
-  <section id="contact" class="py-20 px-6 relative overflow-hidden">
+   <section id="contact" ref="sectionRef" class="py-20 px-6 relative overflow-hidden">
     
     <!-- ФОНОВАЯ КАРТИНКА -->
     <div 
@@ -43,7 +61,10 @@ const theme = computed(() => {
       <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
         
         <!-- ЛЕВАЯ КОЛОНКА: Контакты -->
-         <div class="text-white">
+         <div 
+           class="text-white transition-all duration-1000 ease-out"
+           :class="isVisible ? 'translate-x-0 opacity-100' : 'translate-x-[-200px] opacity-0'"
+         >
           <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">
             Давайте обсудим <br> <span :class="theme.highlight">ваш проект</span>
           </h2>
@@ -100,7 +121,10 @@ const theme = computed(() => {
         </div>
 
         <!-- ПРАВАЯ КОЛОНКА: Форма -->
-        <div>
+        <div 
+          class="transition-all duration-1000 ease-out delay-200"
+          :class="isVisible ? 'translate-x-0 opacity-100' : 'translate-x-[200px] opacity-0'"
+        >
           <form class="bg-white/5 p-8 rounded-3xl backdrop-blur-md border border-white/10 shadow-2xl">
             <h3 class="text-white text-xl font-bold mb-6">Оставьте контакты и мы предложим наилучшее решение</h3>
             <div class="space-y-4">

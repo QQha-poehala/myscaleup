@@ -1,7 +1,32 @@
 <script setup>
 useSeoMeta({
-  title: 'ScaleUp — Внедрение CRM и разработка приложений',
-  description: 'Команда экспертов по автоматизации бизнеса. Внедряем Битрикс24 и amoCRM, разрабатываем тиражные и локальные решения.',
+  title: 'Внедрение CRM под ключ — ScaleUp',
+  description: 'Команда экспертов по автоматизации бизнеса. Внедряем Битрикс24 и amoCRM, разрабатываем тиражные и локальные решения под ключ.',
+  ogTitle: 'Внедрение CRM — ScaleUp',
+  ogDescription: 'Команда экспертов по автоматизации бизнеса. Внедряем Битрикс24 и amoCRM.',
+  ogUrl: 'https://myscaleup.ru/bitrix',
+  ogImage: 'https://myscaleup.ru/logo.png',
+})
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "ScaleUp",
+        "url": "https://myscaleup.ru",
+        "logo": "https://myscaleup.ru/logo.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "", // надо будет добавить формат: +7-952-926-38-03
+          "contactType": "sales",
+          "areaServed": "RU",
+          "availableLanguage": "Russian"
+        }
+      })
+    }
+  ]
 })
 </script>
 

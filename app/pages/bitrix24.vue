@@ -1,8 +1,29 @@
 <script setup>
 import { ref } from 'vue'
 useSeoMeta({
-  title: 'Внедрение Битрикс24 — ScaleUp',
-  description: 'Полный комплекс услуг по настройке Битрикс24: CRM, автоматизация, задачи, сайты и КЭДО.',
+  title: 'Внедрение Битрикс24 под ключ — ScaleUp',
+  ogTitle: 'Внедрение Битрикс24 под ключ — Цены и Этапы',
+  description: 'Полный комплекс услуг по настройке Битрикс24: CRM, автоматизация, задачи и проекты, сайты и КЭДО. Бесплатный аудит вашего портала',
+  ogDescription: 'Замените рутину автоматизацией. Настроим Битрикс24 под ваши процессы',
+  ogImage: 'https://myscaleup.ru/b24_hero.png',
+})
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "Внедрение CRM",
+        "provider": {
+          "@type": "Organization",
+          "name": "ScaleUp"
+        },
+        "name": "Внедрение Битрикс24",
+        "description": "Настройка CRM, автоматизация воронок, обучение сотрудников"
+      })
+    }
+  ]
 })
 </script>
 
@@ -16,8 +37,8 @@ useSeoMeta({
       <div class="container mx-auto relative z-10 grid lg:grid-cols-2 gap-12 items-center">
         <!-- Текст -->
         <div>
-           <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 text-gray-900">
-            Битрикс24 — <br>
+          <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 text-gray-900">
+            Внедрение Битрикс24 — <br>
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800">операционная система</span>
             вашего бизнеса
           </h1>
