@@ -80,7 +80,9 @@ onMounted(() => {
               </div>
               <div>
                 <div class="text-sm text-gray-400">Позвонить нам</div>
-                <a href="tel:+79529263803" class="text-xl font-bold transition-colors" :class="theme.hoverText">+7 (995) 576-38-03</a>
+                 <a href="tel:+79955763803" class="text-xl font-bold transition-colors" :class="theme.hoverText">
+                  +7 (995) 576-38-03
+                </a>
               </div>
             </div>
 
@@ -91,21 +93,36 @@ onMounted(() => {
               </div>
               <div>
                 <div class="text-sm text-gray-400">Написать на почту</div>
-                <a href="mailto:info@scaleup.ru" class="text-xl font-bold transition-colors" :class="theme.hoverText">info@scaleup.ru</a>
+                <a href="mailto:myscaleup@mail.ru" class="text-xl font-bold transition-colors" :class="theme.hoverText">myscaleup@mail.ru</a>
               </div>
             </div>
 
             <!-- Мессенджеры -->
              <div class="flex flex-wrap gap-3 pt-6">
-              <a href="#" class="group flex items-center gap-3 px-5 py-3 bg-white/5 border border-white/10 rounded-full hover:bg-blue-500/20 hover:border-blue-500/50 transition-all hover:-translate-y-1">
+               <a 
+                href="https://t.me/myscaleup" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="group flex items-center gap-3 px-5 py-3 bg-white/5 border border-white/10 rounded-full hover:bg-blue-500/20 hover:border-blue-500/50 transition-all hover:-translate-y-1"
+              >
                 <img src="/tglogo.png" alt="Telegram" class="w-6 h-6 object-contain" />
                 <span class="font-medium text-gray-300 group-hover:text-blue-400 transition-colors">Telegram</span>
               </a>
-              <a href="#" class="group flex items-center gap-3 px-5 py-3 bg-white/5 border border-white/10 rounded-full hover:bg-purple-600/20 hover:border-purple-600/50 transition-all hover:-translate-y-1">
+              <a 
+                href="https://max.ru/u/f9LHodD0cOLd9d5ljdUy0xKBYHT23JCPGrOFf3v9pvNHi-JhAkFVI71VhCA" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="group flex items-center gap-3 px-5 py-3 bg-white/5 border border-white/10 rounded-full hover:bg-purple-600/20 hover:border-purple-600/50 transition-all hover:-translate-y-1"
+              >
                 <img src="/maxlogo.png" alt="Max" class="w-6 h-6 object-contain rounded-full" />
                 <span class="font-medium text-gray-300 group-hover:text-purple-400 transition-colors">MAX</span>
               </a>
-              <a href="#" class="group flex items-center gap-3 px-5 py-3 bg-white/5 border border-white/10 rounded-full hover:bg-green-600/20 hover:border-green-600/50 transition-all hover:-translate-y-1">
+              <a 
+                href="https://wa.me/79955763803" 
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex items-center gap-3 px-5 py-3 bg-white/5 border border-white/10 rounded-full hover:bg-green-600/20 hover:border-green-600/50 transition-all hover:-translate-y-1"
+              >
                 <img src="/whatsapplogo.png" alt="WhatsApp" class="w-6 h-6 object-contain" />
                 <span class="font-medium text-gray-300 group-hover:text-green-400 transition-colors">WhatsApp</span>
               </a>
