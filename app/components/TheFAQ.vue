@@ -136,7 +136,7 @@ onUnmounted(() => {
           :class="isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'"
         >
           <div class="bg-white rounded-3xl shadow-2xl p-2 border border-gray-100">
-            <img src="/FAQ_scaleup.png" alt="Команда ScaleUp" class="w-full h-auto object-cover rounded-2xl mb-6" />
+            <img src="/FAQ_scaleup.png" alt="Ответы на часто задаваемые вопросы по внедрению CRM систем" class="w-full h-auto object-cover rounded-2xl mb-6" />
             <div class="text-center px-4 pb-6">
               <h3 class="text-xl font-bold text-gray-900 mb-2">Не нашли ответа?</h3>
               <p class="text-gray-500 mb-6 text-sm">Свяжитесь с нами — мы проконсультируем вас и подберем лучшее решение.</p>

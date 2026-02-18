@@ -61,7 +61,7 @@ useHead({
           <div class="relative z-10 bg-white rounded-2xl shadow-2xl border border-gray-200 p-2 transform rotate-2 hover:rotate-0 transition-transform duration-500">
              <img 
                src="/b24_hero.png" 
-               alt="Интерфейс Битрикс24" 
+               alt="Интерфейс Битрикс24: пример внедрения и использования воронки продаж" 
                class="rounded-xl w-full h-auto bg-gray-100 min-h-[400px] object-cover" 
                onerror="this.src='https://placehold.co/600x400/e2e8f0/1e293b?text=Image+Not+Found'"
              >
