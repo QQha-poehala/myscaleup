@@ -35,7 +35,7 @@ onUnmounted(() => {
             class="text-3xl md:text-4xl font-extrabold mb-6 leading-tight transition-all duration-1000 ease-out transform"
             :class="isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-40'"
           >
-            Scale<span class="text-red-600">Up</span> превращает хаос <br> в работающую <span class="text-red-600">систему</span>
+            <span class="text-red-600">My</span>Scale<span class="text-red-600">Up</span> превращает хаос в работающую <span class="text-red-600">систему</span>
           </h2>
           
           <!-- ТЕКСТ И СПИСОК -->
@@ -44,7 +44,7 @@ onUnmounted(() => {
             :class="isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-40'"
           >
             <p class="text-gray-800 mb-8 text-lg leading-relaxed">
-              ScaleUp не просто внедряет софт. Мы погружаемся в бизнес-процессы, находим узкие места и оцифровываем процессы так, чтобы бизнес работал как швейцарские часы.
+              MyScaleUp не просто внедряет софт. Мы погружаемся в бизнес-процессы, находим узкие места и оцифровываем процессы так, чтобы бизнес работал как швейцарские часы.
             </p>
 
             <!-- Список преимуществ -->

@@ -1,8 +1,8 @@
 <script setup>
 useSeoMeta({
-  title: 'Внедрение CRM под ключ — ScaleUp',
+  title: 'Внедрение CRM под ключ — MyScaleUp',
   description: 'Команда экспертов по автоматизации бизнеса. Внедряем Битрикс24 и amoCRM, разрабатываем тиражные и локальные решения под ключ.',
-  ogTitle: 'Внедрение CRM — ScaleUp',
+  ogTitle: 'Внедрение CRM — MyScaleUp',
   ogDescription: 'Команда экспертов по автоматизации бизнеса. Внедряем Битрикс24 и amoCRM.',
   ogUrl: 'https://myscaleup.ru/bitrix',
   ogImage: 'https://myscaleup.ru/logo.png',
@@ -14,7 +14,7 @@ useHead({
       children: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "ScaleUp",
+        "name": "MyScaleUp",
         "url": "https://myscaleup.ru",
         "logo": "https://myscaleup.ru/logo.png",
         "contactPoint": {

@@ -37,7 +37,7 @@ onUnmounted(() => {
         :class="isVisible ? 'opacity-200 translate-y-0' : 'opacity-0 translate-y-20'"
       >
         <h2 class="text-3xl md:text-4xl font-extrabold mb-4">
-          Почему бизнес выбирает <span class="text-red-600">Scale</span>Up?
+          Почему бизнес выбирает My<span class="text-red-600">Scale</span>Up?
         </h2>
         <p class="text-gray-500 text-lg">
           Мы минимизируем риски, с которыми сталкиваются компании при внедрении CRM. 

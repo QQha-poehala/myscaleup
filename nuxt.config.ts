@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   ],
   site: {
     url: 'https://myscaleup.ru', 
-    name: 'ScaleUp',
+    name: 'MyScaleUp',
     description: 'Внедрение CRM и автоматизация бизнеса',
     defaultLocale: 'ru',
   },

@@ -10,7 +10,7 @@ defineProps({
       <div class="grid md:grid-cols-3 gap-8 mb-8">
         <div>
           <div class="text-2xl font-bold mb-4">
-            Scale<span :class="color === 'blue' ? 'text-blue-500' : 'text-red-500'">Up</span>
+            <span :class="color === 'blue' ? 'text-blue-500' : 'text-red-500'">My</span>Scale<span :class="color === 'blue' ? 'text-blue-500' : 'text-red-500'">Up</span>
           </div>
           <p class="text-gray-400">Масштабируем ваш бизнес с помощью передовых CRM-технологий и кастомной разработки.</p>
         </div>
@@ -32,7 +32,7 @@ defineProps({
         </div>
       </div>
       <div class="text-center text-gray-600 pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-        <div>© {{ new Date().getFullYear() }} ScaleUp. Все права защищены</div>
+        <div>© {{ new Date().getFullYear() }} MyScaleUp.</div>
         
         <NuxtLink to="/agreement" class="hover:text-white transition-colors">
           Согласие на обработку персональных данных

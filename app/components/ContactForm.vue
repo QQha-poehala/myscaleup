@@ -4,11 +4,14 @@ import AppButton from './AppButton.vue'
 import emailjs from '@emailjs/browser'
 
 const props = defineProps({
-  color: { type: String, default: 'red' }
+  color: {
+    type: String,
+    default: 'red'
+  }
 })
 
 const theme = computed(() => {
-  return props.color === 'blue' 
+  return props.color === 'blue'
     ? {
         highlight: 'text-blue-500',
         hoverText: 'hover:text-blue-500',
@@ -31,26 +34,174 @@ const theme = computed(() => {
 
 const isAgreed = ref(true)
 const isLoading = ref(false)
+
 const formData = reactive({
   name: '',
   contact: '',
   message: ''
 })
 
+const errors = reactive({
+  name: '',
+  contact: '',
+  message: ''
+})
+
+const limits = {
+  name: {
+    min: 2,
+    max: 80
+  },
+  contact: {
+    min: 5,
+    max: 100
+  },
+  message: {
+    min: 10,
+    max: 1000
+  }
+}
+
+const validateName = (value) => {
+  const trimmed = value.trim()
+
+  if (!trimmed) {
+    return 'Введите имя и фамилию'
+  }
+  if (trimmed.length < limits.name.min) {
+    return `Минимум ${limits.name.min} символа`
+  }
+  if (trimmed.length > limits.name.max) {
+    return `Максимум ${limits.name.max} символов`
+  }
+
+  const nameRegex = /^[a-zA-Zа-яА-ЯёЁ\s\-\.]+$/
+  if (!nameRegex.test(trimmed)) {
+    return 'Только буквы, пробелы и дефисы'
+  }
+
+  return ''
+}
+
+const validateContact = (value) => {
+  const trimmed = value.trim()
+
+  if (!trimmed) {
+    return 'Введите email или телефон'
+  }
+  if (trimmed.length < limits.contact.min) {
+    return `Минимум ${limits.contact.min} символов`
+  }
+  if (trimmed.length > limits.contact.max) {
+    return `Максимум ${limits.contact.max} символов`
+  }
+
+  const isEmail = trimmed.includes('@')
+  const isPhone = /[\d\+\(\)]/.test(trimmed) && !trimmed.includes('@')
+
+  if (isEmail) {
+    const emailRegex = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/
+    if (!emailRegex.test(trimmed)) {
+      return 'Некорректный формат email'
+    }
+  } else if (isPhone) {
+    const digits = trimmed.replace(/\D/g, '')
+    if (digits.length < 7) {
+      return 'Телефон слишком короткий (мин. 7 цифр)'
+    }
+    if (digits.length > 15) {
+      return 'Телефон слишком длинный (макс. 15 цифр)'
+    }
+    const phoneCharsRegex = /^[\d\+\(\)\-\s]+$/
+    if (!phoneCharsRegex.test(trimmed)) {
+      return 'Телефон содержит недопустимые символы'
+    }
+  } else {
+    return 'Введите корректный email или телефон'
+  }
+
+  return ''
+}
+
+const validateMessage = (value) => {
+  const trimmed = value.trim()
+
+  if (!trimmed) {
+    return 'Опишите вашу задачу'
+  }
+  if (trimmed.length < limits.message.min) {
+    return `Минимум ${limits.message.min} символов (сейчас ${trimmed.length})`
+  }
+  if (trimmed.length > limits.message.max) {
+    return `Максимум ${limits.message.max} символов`
+  }
+
+  return ''
+}
+
+const onNameInput = () => {
+  if (formData.name.length > limits.name.max) {
+    formData.name = formData.name.slice(0, limits.name.max)
+  }
+  if (errors.name) {
+    errors.name = validateName(formData.name)
+  }
+}
+
+const onContactInput = () => {
+  if (formData.contact.length > limits.contact.max) {
+    formData.contact = formData.contact.slice(0, limits.contact.max)
+  }
+  if (errors.contact) {
+    errors.contact = validateContact(formData.contact)
+  }
+}
+
+const onMessageInput = () => {
+  if (formData.message.length > limits.message.max) {
+    formData.message = formData.message.slice(0, limits.message.max)
+  }
+  if (errors.message) {
+    errors.message = validateMessage(formData.message)
+  }
+}
+
+const onNameBlur = () => {
+  errors.name = validateName(formData.name)
+}
+
+const onContactBlur = () => {
+  errors.contact = validateContact(formData.contact)
+}
+
+const onMessageBlur = () => {
+  errors.message = validateMessage(formData.message)
+}
+
+const messageLength = computed(() => formData.message.trim().length)
+
+const validateAll = () => {
+  errors.name = validateName(formData.name)
+  errors.contact = validateContact(formData.contact)
+  errors.message = validateMessage(formData.message)
+
+  return !errors.name && !errors.contact && !errors.message
+}
+
 const handleSubmit = async () => {
   if (!isAgreed.value) {
     alert('Для отправки заявки необходимо подтвердить согласие на обработку персональных данных.')
     return
   }
-  if (!formData.name.trim() || !formData.contact.trim() || !formData.message.trim()) {
-    alert('Пожалуйста, заполните все поля формы.')
-    return
+
+  if (!validateAll()) {
+    return 
   }
 
   const templateParams = {
-    user_name: formData.name,
-    user_contact: formData.contact,
-    message_body: formData.message
+    user_name: formData.name.trim(),
+    user_contact: formData.contact.trim(),
+    message_body: formData.message.trim()
   }
 
   const SERVICE_ID = 'service_biwgcys'
@@ -58,17 +209,16 @@ const handleSubmit = async () => {
   const PUBLIC_KEY = '4blR_h0n83lKqxHD1'
 
   try {
-    isLoading.value = true 
-    
+    isLoading.value = true
     await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
-    
     console.log('Письмо успешно отправлено!')
     alert('Спасибо! Мы свяжемся с вами в ближайшее время.')
-    
     formData.name = ''
     formData.contact = ''
     formData.message = ''
-    
+    errors.name = ''
+    errors.contact = ''
+    errors.message = ''
   } catch (error) {
     console.error('Ошибка отправки:', error)
     alert('Произошла ошибка при отправке. Пожалуйста, напишите нам в мессенджеры.')
@@ -88,9 +238,8 @@ onMounted(() => {
         observer.disconnect()
       }
     },
-    { threshold: 0.2 } 
+    { threshold: 0.2 }
   )
-
   if (sectionRef.value) {
     observer.observe(sectionRef.value)
   }
@@ -181,44 +330,112 @@ onMounted(() => {
             </div>
           </div>
         </div>
-
-        <!-- ПРАВАЯ КОЛОНКА: Форма -->
+       <!-- ПРАВАЯ КОЛОНКА: Форма -->
         <div 
           class="transition-all duration-1000 ease-out delay-200"
           :class="isVisible ? 'translate-x-0 opacity-100' : 'translate-x-[200px] opacity-0'"
         >
-          <form class="bg-white/5 p-8 rounded-3xl backdrop-blur-md border border-white/10 shadow-2xl">
+          <form 
+            class="bg-white/5 p-8 rounded-3xl backdrop-blur-md border border-white/10 shadow-2xl"
+            @submit.prevent="handleSubmit"
+          >
             <h3 class="text-white text-xl font-bold mb-6">Оставьте контакты и мы предложим наилучшее решение</h3>
             <div class="space-y-4">
+
               <div>
-                <label class="text-xs font-medium text-gray-400 mb-1 block ml-1 uppercase tracking-wider">Ваше имя</label>
+                <label class="text-xs font-medium text-gray-400 mb-1 block ml-1 uppercase tracking-wider">
+                  Ваше имя
+                </label>
                 <input 
                   type="text" 
                   v-model="formData.name"
-                  class="w-full bg-gray-900/50 border border-gray-600 rounded-xl px-4 py-4 text-white focus:outline-none focus:ring-1 transition-all placeholder-gray-600" 
-                  :class="theme.inputFocus" 
+                  :maxlength="limits.name.max"
+                  @input="onNameInput"
+                  @blur="onNameBlur"
+                  class="w-full bg-gray-900/50 border rounded-xl px-4 py-4 text-white focus:outline-none focus:ring-1 transition-all placeholder-gray-600" 
+                  :class="[
+                    errors.name 
+                      ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
+                      : 'border-gray-600 ' + theme.inputFocus
+                  ]"
                   placeholder="Иван Иванов"
                 >
+                <Transition name="fade">
+                  <p v-if="errors.name" class="mt-1.5 ml-1 text-xs text-red-400 flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                    </svg>
+                    {{ errors.name }}
+                  </p>
+                </Transition>
               </div>
+
               <div>
-                <label class="text-xs font-medium text-gray-400 mb-1 block ml-1 uppercase tracking-wider">Email или Телефон</label>
+                <label class="text-xs font-medium text-gray-400 mb-1 block ml-1 uppercase tracking-wider">
+                  Email или Телефон
+                </label>
                 <input 
                   type="text" 
                   v-model="formData.contact"
-                  class="w-full bg-gray-900/50 border border-gray-600 rounded-xl px-4 py-4 text-white focus:outline-none focus:ring-1 transition-all placeholder-gray-600" 
-                  :class="theme.inputFocus" 
-                  placeholder="+7 (999) ..."
+                  :maxlength="limits.contact.max"
+                  @input="onContactInput"
+                  @blur="onContactBlur"
+                  class="w-full bg-gray-900/50 border rounded-xl px-4 py-4 text-white focus:outline-none focus:ring-1 transition-all placeholder-gray-600" 
+                  :class="[
+                    errors.contact 
+                      ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
+                      : 'border-gray-600 ' + theme.inputFocus
+                  ]"
+                  placeholder="+7 (999) ... или email@mail.ru"
                 > 
+                <Transition name="fade">
+                  <p v-if="errors.contact" class="mt-1.5 ml-1 text-xs text-red-400 flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                    </svg>
+                    {{ errors.contact }}
+                  </p>
+                </Transition>
               </div>
+
               <div>
-                <label class="text-xs font-medium text-gray-400 mb-1 block ml-1 uppercase tracking-wider">Задача</label>
+                <div class="flex items-center justify-between mb-1 ml-1">
+                  <label class="text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    Задача
+                  </label>
+                  <span 
+                    class="text-xs transition-colors"
+                    :class="messageLength > limits.message.max 
+                      ? 'text-red-400' 
+                      : messageLength > limits.message.max * 0.9 
+                        ? 'text-yellow-400' 
+                        : 'text-gray-500'"
+                  >
+                    {{ messageLength }}/{{ limits.message.max }}
+                  </span>
+                </div>
                 <textarea 
                   rows="3" 
                   v-model="formData.message"
-                  class="w-full bg-gray-900/50 border border-gray-600 rounded-xl px-4 py-4 text-white focus:outline-none focus:ring-1 transition-all placeholder-gray-600" 
-                  :class="theme.inputFocus" 
+                  :maxlength="limits.message.max"
+                  @input="onMessageInput"
+                  @blur="onMessageBlur"
+                  class="w-full bg-gray-900/50 border rounded-xl px-4 py-4 text-white focus:outline-none focus:ring-1 transition-all placeholder-gray-600 resize-none" 
+                  :class="[
+                    errors.message 
+                      ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
+                      : 'border-gray-600 ' + theme.inputFocus
+                  ]"
                   placeholder="Опишите ваш запрос..."
                 ></textarea>
+                <Transition name="fade">
+                  <p v-if="errors.message" class="mt-1.5 ml-1 text-xs text-red-400 flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                    </svg>
+                    {{ errors.message }}
+                  </p>
+                </Transition>
               </div>
             </div>
             
@@ -242,12 +459,12 @@ onMounted(() => {
               </label>
             </div>
 
+            <!-- КНОПКА -->
             <AppButton 
-              type="button" 
+              type="submit" 
               class="w-full mt-6 py-4 text-lg transition-opacity disabled:opacity-70 disabled:cursor-not-allowed" 
               :variant="theme.btnVariant"
               :disabled="isLoading"
-              @click="handleSubmit"
             >
               <span v-if="!isLoading">Отправить заявку</span>
               <span v-else class="flex items-center justify-center gap-2">
@@ -264,3 +481,15 @@ onMounted(() => {
     </div>
   </section>
 </template>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.25s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+</style>
