@@ -298,6 +298,28 @@ onMounted(() => {
               </div>
             </div>
 
+            <!-- Адрес -->
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center" :class="theme.highlight">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                </svg>
+              </div>
+              <div>
+                <div class="text-sm text-gray-400">Наш адрес</div>
+                <a 
+                  href="https://yandex.com/maps/-/CPbFEH3w" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="text-xl font-bold transition-colors" 
+                  :class="theme.hoverText"
+                >
+                  Немировича-Данченко 148/2
+                </a>
+              </div>
+            </div>
+
             <!-- Мессенджеры -->
              <div class="flex flex-wrap gap-3 pt-6">
                <a 
