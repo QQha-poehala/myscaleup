@@ -212,16 +212,18 @@ const handleSubmit = async () => {
     isLoading.value = true
     await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
     console.log('Письмо успешно отправлено!')
-    alert('Спасибо! Мы свяжемся с вами в ближайшее время.')
+
     formData.name = ''
     formData.contact = ''
     formData.message = ''
     errors.name = ''
     errors.contact = ''
     errors.message = ''
+
+    await navigateTo('/thanks')
   } catch (error) {
     console.error('Ошибка отправки:', error)
-    alert('Произошла ошибка при отправке. Пожалуйста, напишите нам в мессенджеры.')
+    alert('Произошла ошибка при отправке. Пожалуйста, напишите нам в мессенджер.')
   } finally {
     isLoading.value = false
   }
