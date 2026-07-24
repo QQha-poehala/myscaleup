@@ -32,7 +32,7 @@ const theme = computed(() => {
       }
 })
 
-const isAgreed = ref(true)
+const isAgreed = ref(false)
 const isLoading = ref(false)
 
 const formData = reactive({
@@ -66,7 +66,7 @@ const validateName = (value) => {
   const trimmed = value.trim()
 
   if (!trimmed) {
-    return 'Введите имя и фамилию'
+    return 'Введите имя'
   }
   if (trimmed.length < limits.name.min) {
     return `Минимум ${limits.name.min} символа`
@@ -488,7 +488,7 @@ onMounted(() => {
               type="submit" 
               class="w-full mt-6 py-4 text-lg transition-opacity disabled:opacity-70 disabled:cursor-not-allowed" 
               :variant="theme.btnVariant"
-              :disabled="isLoading"
+              :disabled="isLoading || !isAgreed" 
             >
               <span v-if="!isLoading">Отправить заявку</span>
               <span v-else class="flex items-center justify-center gap-2">

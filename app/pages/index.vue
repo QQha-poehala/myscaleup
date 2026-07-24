@@ -64,5 +64,6 @@ useHead({
     <TheFAQ />
     <ContactForm />
     <TheFooter />
+    <TheCookieBanner /> 
   </div>
 </template>

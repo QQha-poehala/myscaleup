@@ -78,5 +78,6 @@ useHead({
     <DevelopmentStages color="blue" />
     <ContactForm color="blue" />
     <TheFooter color="blue" />
+    <TheCookieBanner /> 
   </div>
 </template>
