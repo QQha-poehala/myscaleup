@@ -1,8 +1,8 @@
 <script setup>
 useSeoMeta({
-  title: 'Масштабируй свой бизнесчерез технологии! - MyScaleUp',
+  title: 'Масштабируй свой бизнес через технологии! - MyScaleUp',
   description: 'Команда экспертов по автоматизации бизнеса. Внедряем Битрикс24 и amoCRM, разрабатываем сайты, тиражные и локальные решения под ключ.',
-  ogTitle: 'Масштабируй свой бизне счерез технологии!',
+  ogTitle: 'Масштабируй свой бизнес через технологии!',
   ogDescription: 'Команда экспертов по автоматизации бизнеса. Внедряем Битрикс24 и amoCRM, создаем сайты и корпоративные системы для вашего бизнеса.',
   ogUrl: 'https://myscaleup.ru/bitrix',
   ogImage: 'https://myscaleup.ru/logo.png',
@@ -55,7 +55,6 @@ useHead({
         </div>
       </div>
     </section>
-
     <Aboutus />
     <TheBenefits />
     <ThePainPoints />
@@ -65,5 +64,6 @@ useHead({
     <ContactForm />
     <TheFooter />
     <TheCookieBanner /> 
+    <SlideOverForm />
   </div>
 </template>
