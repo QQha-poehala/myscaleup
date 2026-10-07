@@ -316,6 +316,10 @@ useSeoMeta({
           <div class="mb-10 max-w-3xl">
             <h2 class="mb-5 text-3xl font-bold md:text-4xl">Поддержка приложения</h2>
             <p class="text-lg leading-relaxed text-gray-600">Если возникла проблема, свяжитесь с нами — поможем разобраться в её причине. Подробное описание позволит быстрее проверить ситуацию и предложить решение.</p>
+            <div class="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-sm">
+              <NuxtLink to="/apps/integration-atisu-eula" class="font-medium text-red-600 underline underline-offset-4 hover:text-red-700">Лицензионное соглашение</NuxtLink>
+              <NuxtLink to="/apps/integration-atisu-privacy" class="font-medium text-red-600 underline underline-offset-4 hover:text-red-700">Политика конфиденциальности приложения</NuxtLink>
+            </div>
           </div>
           <div class="grid gap-6 lg:grid-cols-3">
             <div class="rounded-2xl border border-gray-100 bg-white p-6 md:p-8 lg:col-span-2">
