@@ -7,6 +7,10 @@ const props = defineProps({
   color: {
     type: String,
     default: 'red'
+  },
+  email: {
+    type: String,
+    default: 'myscaleup@mail.ru'
   }
 })
 
@@ -296,7 +300,7 @@ onMounted(() => {
               </div>
               <div>
                 <div class="text-sm text-gray-400">Написать на почту</div>
-                <a href="mailto:myscaleup@mail.ru" class="text-xl font-bold transition-colors" :class="theme.hoverText">myscaleup@mail.ru</a>
+                <a :href="`mailto:${props.mail}`" class="text-xl font-bold transition-colors" :class="theme.hoverText">{{ props.email }}</a>
               </div>
             </div>
 

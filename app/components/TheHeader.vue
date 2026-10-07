@@ -26,9 +26,7 @@ const closeMenu = () => {
         <div class="relative group cursor-default text-gray-400"> amoCRM
           <BadgeSoon />
         </div>
-        <div class="relative group cursor-default text-gray-400"> Приложения
-          <BadgeSoon />
-        </div>
+        <NuxtLink to="/applist" class="text-gray-600 hover:text-red-600 transition-all duration-300 transform hover:scale-[1.2] inline-block origin-center" active-class="!text-red-600">Приложения</NuxtLink>
       </nav>
 
       <div class="hidden lg:block">
@@ -80,10 +78,11 @@ const closeMenu = () => {
             <div class="absolute -top-3 -right-8 scale-75"><BadgeSoon /></div>
           </div>
           
-          <div class="text-xl font-medium text-gray-400 relative inline-block mx-auto">
-            Приложения
-            <div class="absolute -top-3 -right-8 scale-75"><BadgeSoon /></div>
-          </div>
+          <NuxtLink
+            to="/applist"
+            class="text-xl font-medium text-gray-800 hover:text-red-600 transition-colors"
+            @click="closeMenu"
+          >Приложения</NuxtLink>
 
           <div class="pt-4 pb-4">
             <AppButton to="#contact" class="w-full" @click.native="closeMenu">
