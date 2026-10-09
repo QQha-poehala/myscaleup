@@ -3,6 +3,11 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: true,
 
+  routeRules: {
+    '/docs/site-templates-license': { prerender: true },
+    '/docs/site-templates-privacy': { prerender: true },
+  },
+
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/seo'
