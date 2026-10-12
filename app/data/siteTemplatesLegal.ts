@@ -3,7 +3,7 @@ export const siteTemplatesLegal = {
   inn: '541014640227',
   address: '630090, г. Новосибирск, ул. Академическая, д. 17',
   email: 'myscaleup@mail.ru',
-  edition: '9 октября 2026 года',
+  edition: '12 октября 2026 года',
   licensePath: '/docs/site-templates-license',
   privacyPath: '/docs/site-templates-privacy',
 }
@@ -14,4 +14,5 @@ export const siteTemplatesLegal = {
 export const licensedSiteTemplates = [
   { name: 'Обслуживание и установка кондиционеров' },
   { name: 'Сантехническая служба' },
+  { name: 'Эвакуатор' },
 ]
