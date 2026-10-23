@@ -11,6 +11,10 @@ const props = defineProps({
   email: {
     type: String,
     default: 'myscaleup@mail.ru'
+  },
+  initialMessage: {
+    type: String,
+    default: ''
   }
 })
 
@@ -42,7 +46,7 @@ const isLoading = ref(false)
 const formData = reactive({
   name: '',
   contact: '',
-  message: ''
+  message: props.initialMessage
 })
 
 const errors = reactive({
@@ -300,7 +304,7 @@ onMounted(() => {
               </div>
               <div>
                 <div class="text-sm text-gray-400">Написать на почту</div>
-                <a :href="`mailto:${props.mail}`" class="text-xl font-bold transition-colors" :class="theme.hoverText">{{ props.email }}</a>
+                <a :href="`mailto:${props.email}`" class="text-xl font-bold transition-colors" :class="theme.hoverText">{{ props.email }}</a>
               </div>
             </div>
 

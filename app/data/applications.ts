@@ -1,3 +1,5 @@
+import { biReports, biReportPath } from './biReports'
+
 export interface Application {
   slug: string
   name: string
@@ -14,4 +16,13 @@ export const cargoPublication: Application = {
   to: '/apps/integration-atisu',
 }
 
-export const applications: Application[] = [cargoPublication]
+export const applications: Application[] = [
+  cargoPublication,
+  ...biReports.map(report => ({
+    slug: `bi-${report.slug}`,
+    name: report.name,
+    description: report.description,
+    logo: report.logo,
+    to: biReportPath(report.slug),
+  })),
+]

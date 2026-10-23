@@ -2,10 +2,10 @@
 import { applications } from '~/data/applications'
 
 useSeoMeta({
-  title: 'Приложения — MyScaleUp',
-  description: 'Приложения и интеграции MyScaleUp для бизнеса. Публикация грузов на ATI.SU прямо из сделки Битрикс24.',
-  ogTitle: 'Приложения — MyScaleUp',
-  ogDescription: 'Готовые приложения и интеграции для ваших бизнес-процессов.',
+  title: 'Приложения и BI-отчёты — MyScaleUp',
+  description: 'Приложения, интеграции и BI-отчёты MyScaleUp для Битрикс24: публикация грузов в ATI.SU и анализ упущенных продаж.',
+  ogTitle: 'Приложения и BI-отчёты — MyScaleUp',
+  ogDescription: 'Готовые приложения, интеграции и аналитические отчёты для ваших бизнес-процессов.',
 })
 </script>
 
@@ -18,10 +18,10 @@ useSeoMeta({
       <div class="container relative mx-auto max-w-6xl">
         <div class="mb-8">
           <h1 class="mb-4 text-4xl font-extrabold leading-tight md:text-5xl">
-            Наши <span class="bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent">приложения</span>
+            Приложения и <span class="bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent">BI-отчёты</span>
           </h1>
           <p class="max-w-2xl text-lg leading-relaxed text-gray-600">
-            Готовые решения и интеграции для ваших бизнес-процессов.
+            Готовые решения, интеграции и аналитические отчёты для Битрикс24.
           </p>
         </div>
 

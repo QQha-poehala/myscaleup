@@ -1,3 +1,5 @@
+import { biReports, biReportPath } from './app/data/biReports'
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
@@ -6,6 +8,9 @@ export default defineNuxtConfig({
   routeRules: {
     '/docs/site-templates-license': { prerender: true },
     '/docs/site-templates-privacy': { prerender: true },
+    '/docs/bi-reports-license': { prerender: true },
+    '/docs/bi-reports-privacy': { prerender: true },
+    ...Object.fromEntries(biReports.map(report => [biReportPath(report.slug), { prerender: true }])),
   },
 
   modules: [

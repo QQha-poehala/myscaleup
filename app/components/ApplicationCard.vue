@@ -9,7 +9,7 @@ defineProps<{
 <template>
   <NuxtLink
     :to="application.to"
-    :aria-label="`Подробнее о приложении «${application.name}»`"
+    :aria-label="`Подробнее о решении «${application.name}»`"
     class="group flex h-full min-h-[240px] flex-col rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-red-200 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-4 motion-reduce:transform-none motion-reduce:transition-none"
   >
     <div class="mb-4 flex items-start justify-between gap-4">
