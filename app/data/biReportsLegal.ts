@@ -5,7 +5,7 @@ export const biReportsLegal = {
   inn: '541014640227',
   address: '630090, г. Новосибирск, ул. Академическая, д. 17',
   email: biReportsSupport.email,
-  edition: '23 октября 2026 года',
+  edition: '2 ноября 2026 года',
   licensePath: '/docs/bi-reports-license',
   privacyPath: '/docs/bi-reports-privacy',
 }
