@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { biReportPath, biReportsSupport as support, type BiReport } from '~/data/biReports'
-import { biReportsLegal } from '~/data/biReportsLegal'
 
 defineProps<{ report: BiReport }>()
 
@@ -100,8 +99,8 @@ const sections = [
             <p class="mt-4 leading-relaxed text-gray-600">Снимки экрана и файлы отправляйте по почте, скрыв имена клиентов и другие лишние сведения. Не отправляйте пароли, ключи BI, API-токены и полные выгрузки CRM. Для демонстрации достаточно названия отчёта, интересующей задачи и контакта.</p>
           </div>
           <div class="mt-7 flex flex-wrap gap-5 text-sm font-medium text-red-600">
-            <NuxtLink :to="biReportsLegal.licensePath" class="underline underline-offset-4">Лицензионное соглашение</NuxtLink>
-            <NuxtLink :to="biReportsLegal.privacyPath" class="underline underline-offset-4">Политика конфиденциальности</NuxtLink>
+            <NuxtLink :to="report.legal.licensePath" class="underline underline-offset-4">Лицензионное соглашение</NuxtLink>
+            <NuxtLink :to="report.legal.privacyPath" class="underline underline-offset-4">Политика конфиденциальности</NuxtLink>
           </div>
           <p class="mt-6 text-sm text-gray-500">Страница отчёта: <NuxtLink :to="biReportPath(report.slug)" class="break-all text-red-600 underline">https://myscaleup.ru{{ biReportPath(report.slug) }}</NuxtLink></p>
         </section>

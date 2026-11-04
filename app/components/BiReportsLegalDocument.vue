@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import { biReportsLegal, licensedBiReports } from '~/data/biReportsLegal'
 
-defineProps<{ title: string; relatedPath: string; relatedTitle: string }>()
+defineProps<{
+  title: string
+  relatedPath: string
+  relatedTitle: string
+  application?: { name: string; edition: string }
+}>()
 </script>
 
 <template>
@@ -13,10 +18,11 @@ defineProps<{ title: string; relatedPath: string; relatedTitle: string }>()
         <article class="rounded-3xl border border-gray-100 bg-white p-6 text-gray-800 shadow-sm md:p-12">
           <header class="mb-8 border-b border-gray-100 pb-6">
             <h1 class="mb-4 break-words text-3xl font-bold leading-tight md:text-4xl">{{ title }}</h1>
-            <p class="mb-3 text-lg font-medium">BI-отчёты MyScaleUp для BI Конструктора Битрикс24</p>
-            <p class="text-sm text-gray-500">Редакция от {{ biReportsLegal.edition }}</p>
+            <p v-if="application" class="mb-3 text-lg font-medium">Приложение «{{ application.name }}»</p>
+            <p v-else class="mb-3 text-lg font-medium">BI-отчёты MyScaleUp для BI Конструктора Битрикс24</p>
+            <p class="text-sm text-gray-500">Редакция от {{ application?.edition ?? biReportsLegal.edition }}</p>
           </header>
-          <section class="mb-8 rounded-2xl border border-red-100 bg-red-50 p-5" aria-labelledby="covered-reports">
+          <section v-if="!application" class="mb-8 rounded-2xl border border-red-100 bg-red-50 p-5" aria-labelledby="covered-reports">
             <h2 id="covered-reports" class="mb-3 text-lg font-bold">Отчёты, на которые распространяется документ</h2>
             <ul class="list-disc space-y-2 pl-5 leading-relaxed">
               <li v-for="report in licensedBiReports" :key="report.name">«{{ report.name }}»</li>

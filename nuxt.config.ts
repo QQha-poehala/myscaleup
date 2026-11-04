@@ -10,6 +10,8 @@ export default defineNuxtConfig({
     '/docs/site-templates-privacy': { prerender: true },
     '/docs/bi-reports-license': { prerender: true },
     '/docs/bi-reports-privacy': { prerender: true },
+    '/docs/unanswered-leads-license': { prerender: true },
+    '/docs/unanswered-leads-privacy': { prerender: true },
     ...Object.fromEntries(biReports.map(report => [biReportPath(report.slug), { prerender: true }])),
   },
 

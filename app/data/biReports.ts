@@ -5,6 +5,7 @@ export interface BiReport {
   name: string
   description: string
   logo: string
+  legal: { licensePath: string; privacyPath: string }
   intro: string
   sections: { title: string; items: string[] }[]
   metrics: { name: string; description: string }[]
